@@ -1,0 +1,7 @@
+.row{
+    margin: 2px auto;
+    background-color:rgb(147, 242, 180);
+    width: 100%;
+    min-height: 10px;
+    border: 1px black solid;
+}
