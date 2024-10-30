@@ -93,8 +93,49 @@
 }
 
 .sliceshow {
-    height: 400px;
+    height: 350px;
     width: 90%;
     background-color: rosybrown;
     margin: 20px 0;
+}
+
+.product {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Chia đều thành 5 cột */
+    gap: 2rem;
+}
+
+
+.book-item {
+    background: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 3rem;
+    text-align: center;
+}
+
+.book-item img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.book-item h3 {
+    margin: 1rem 0 0.5rem;
+}
+
+.book-item p {
+    margin: 0.5rem 0;
+}
+
+.add-to-cart {
+    padding: 0.5rem 1rem;
+    background: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background: #e5533c;
 }
