@@ -13,14 +13,15 @@ body {
 /* Header Styles */
 .header-container {
     display: flex;
-    justify-content: space-between;
+    width: 100%;
+    justify-content: space-around;
     align-items: center;
     background-color: #ffffff;
-    padding: 10px 20px;
+    padding: 10px 150px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 .logo img {
+    mix-blend-mode: darken;
     width: 150px;
     height: auto;
 }
@@ -110,18 +111,24 @@ body {
 }
 
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(200px, 1fr));
-    gap: 20px;
-    margin: 0 100px;
+    display: inline-block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 100px;
+    text-align: center;
 }
 
 .book-item {
+    display: inline-block;
+    width: 18%;
+    min-width: 200px;
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
+    margin: 10px;
+    box-sizing: border-box;
 }
 
 .book-item img {
@@ -132,11 +139,15 @@ body {
 .book-item h3 {
     margin: 10px 0;
     color: #2c3e50;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .book-item p {
     margin: 5px 0;
     color: #7f8c8d;
+
 }
 
 .add-to-cart {
@@ -152,6 +163,30 @@ body {
 .add-to-cart:hover {
     background: #2980b9;
 }
+
+/* Banner Style */
+.section-banner {
+    width: 85%;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section-banner img {
+    width: 100%;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.section-banner img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.section-banner::before {
+    content: "";
+    display: block;
+}
+
 
 /* Footer Styles */
 footer {
