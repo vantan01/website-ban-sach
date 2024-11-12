@@ -9,7 +9,15 @@ body {
     background-color: #ffffff;
     color: #333;
 }
-
+.w85{
+    width: 85%;
+}
+.w68{
+    width: 68%;
+}
+.m0{
+    margin: 0 auto;
+}
 /* Header Styles */
 .header-container {
     display: flex;
@@ -116,6 +124,7 @@ body {
 
 /* Main Styles */
 .main {
+    max-width: 100%;
     padding: 20px;
     text-align: center;
 }
@@ -129,35 +138,53 @@ body {
 }
 
 .title-catagory {
+    display: flex;
     background-color: #777;
     border-radius: 20px;
     color: #fff;
-    text-align: center;
+    text-align: start;
     font-size: 1.2em;
     font-weight: bold;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1;
+
 }
-
-.title-catagory:hover {
-    background-color: #555;
-    transform: scale(1.05);
+.title-catagory h3{
+    margin: 0;
+    padding: 0 20px;
 }
-
-
+/* side bar style */
+.side-bar{
+    float: left; 
+    width: 244px;
+    height: 500px;
+    background-color: red;
+    margin-left: 7.5%;
+}
+/* product style */
 .product-grid {
     display: flex;
-    overflow: hidden;
     margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box; 
+    
+}
+.grid-5{
     width: 85%;
     max-width: 85%;
-    text-align: center;
-    box-sizing: border-box;
-    white-space: nowrap;
 }
-
-.book-item:active {
-    transform: translateX(-100%);
+.grid-4{
+    width: 68%;
+    margin: 0;
+}
+.wrap{
+    overflow: hidden; 
+    flex-wrap: wrap;
+}
+.nowrap{
+    overflow: hidden; 
+    flex-wrap: nowrap;
 }
 
 .book-item {
@@ -165,7 +192,7 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     width: 18%;
-    min-width: 220px;
+    min-width: 220px; 
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -211,9 +238,9 @@ body {
 
 /* Banner Style */
 .section-banner {
-    width: 85%;
+    
     overflow: hidden;
-    margin: 0 auto;
+    margin: 40px auto;
     position: relative;
 }
 
