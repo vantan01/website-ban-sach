@@ -1,17 +1,38 @@
 * {
     box-sizing: border-box;
-    color: #333;
+    color: var(--mau-den);
+}
+:root{
+    --mau-xanh:#3498db;
+    --mau-xanh-dam:#2980b9;
+    --mau-trang:#fff;
+    --mau-den:#333;
+    --mau-xam:#ccc;
 }
 
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
-    color: #333;
+    background-color: var(--mau-trang);
+    color: var(--mau-den);
 }
-
-
+.header, .main, .footer{
+    max-width: 1500px;
+    margin: 0 auto;
+    width: 100%;
+}
+.right{
+    margin: 0;
+    width: 70%;
+    float: right;
+}
+.left{
+    text-align: end;
+    margin: 0;
+    width: 30%;
+    float: left;
+} 
 .w85 {
     width: 85%;
 }
@@ -31,13 +52,13 @@ body {
 }
 
 /* Header Styles */
+
 .header-container {
     display: flex;
-    width: 100%;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
-    background-color: #ffffff;
-    padding: 0 10%;
+    background-color: var(--mau-trang);
+    padding: 10px 10%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -59,8 +80,9 @@ body {
 .search input {
     width: 100%;
     padding: 10px 40px 10px 20px;
-    border: 2px solid #ccc;
+    border: 2px solid #888;
     border-radius: 50px;
+    font-size: 17px;
     outline: none;
     transition: box-shadow 0.3s, border-color 0.3s;
 }
@@ -71,23 +93,23 @@ body {
 
 .search:hover input {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-color: #3498db;
+    border-color: var(--mau-xanh);
 }
 
 .search i {
     position: absolute;
     right: 10px;
-    color: #aaa;
+    color: var(--mau-xam);
     font-size: 16px;
     cursor: pointer;
 }
 
 .search i:active {
-    color: #333;
+    color: var(--mau-den);
 }
 
 .user-options a {
-    color: #333;
+    color: var(--mau-den);
     margin-left: 20px;
     text-decoration: none;
 }
@@ -108,8 +130,9 @@ body {
 .nav a {
     display: block;
     padding: 10px 10px;
-    color: #333;
+    color: var(--mau-den);
     margin: 5px;
+    font-size: 14px;
     text-decoration: none;
     position: relative;
     transition: color 0.3s ease;
@@ -123,7 +146,7 @@ body {
     bottom: 0;
     width: 0;
     height: 4px;
-    background-color: black;
+    background-color: var(--mau-xanh);
     border-radius: 4px;
     transition: width 0.3s ease, left 0.3s ease;
 }
@@ -140,14 +163,14 @@ body {
 
 /* Main Styles */
 .main {
-    max-width: 100%;
+    
     padding: 20px;
     text-align: center;
 }
 
 .slideshow {
     min-height: 450px;
-    background-color: #bdc3c7;
+    background-color: #aaa;
     border-radius: 10px;
     margin-bottom: 100px;
 }
@@ -155,8 +178,19 @@ body {
 .title-catagory {
     display: flex;
     padding: 0 20px;
+    text-align: start;
+    font-size: 1.2em;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+  .title-catagory h3{
+  }
+/* 
+.title-catagory {
+    display: flex;
+    padding: 0 20px;
     border-bottom: 4px solid #1e90ff;
-    color: #ffffff;
+    color: var(--mau-trang);
     text-align: start;
     font-size: 1.2em;
     font-weight: bold;
@@ -166,23 +200,26 @@ body {
 
 .title-catagory h3 {
     margin: 0;
-    color: #333;
+    color: var(--mau-den);
     padding: 0 10px;
     border-radius: 5px;
     transition: box-shadow 0.3s ease;
-}
+} */
 
 /* aside style */
 .aside {
-    float: left;
     width: 244px;
-    margin-left: 7.5%;
+    margin-left: 30%;
 }
-
+.aside-item{
+    
+}
+.aside-title{
+    text-align: start;
+}
 .aside-content {
-    min-height: 250px;
     border-radius: 10px;
-    border: 1px solid #1e90ff;
+    border: 1px solid var(--mau-xanh);
     padding: 10px;
     margin: 20px 0;
 }
@@ -192,7 +229,7 @@ body {
     overflow-y: scroll;
     padding: 0;
     margin: 0;
-}
+} 
 
 .aside-content ul li {
     text-align: start;
@@ -204,7 +241,7 @@ body {
     text-decoration: none;
     
     font-size: 14px;
-    color: #333;
+    color: var(--mau-den);
     transition: color 0.3s;
 }
 
@@ -218,7 +255,7 @@ body {
 }
 
 .aside-content ul::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--mau-trang);
     border-radius: 10px;
 }
 
@@ -244,6 +281,7 @@ body {
 
 .grid-4 {
     width: 68%;
+    width: 976px;
     margin: 0;
 }
 
@@ -263,7 +301,7 @@ body {
     width: 18%;
     min-width: 220px;
     min-height: 420px;
-    background: #ffffff;
+    background: var(--mau-trang);
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -279,6 +317,7 @@ body {
 }
 
 .book-item h3 {
+    font-size: 14px;
     margin: 10px 0;
     color: #2c3e50;
 
@@ -286,13 +325,13 @@ body {
 
 .book-item p {
     margin: 5px 0;
-    color: #7f8c8d;
+    color: #aaa;
 
 }
 
 .add-to-cart {
     padding: 10px 20px;
-    background: #3498db;
+    background: var(--mau-xanh);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -301,7 +340,7 @@ body {
 }
 
 .add-to-cart:hover {
-    background: #2980b9;
+    background: var(--mau-xanh-dam);
 }
 
 /* Banner Style */
@@ -330,29 +369,113 @@ body {
 /* next page */
 
 .change-page{
-    background-color: red;
-    height: 100px;
-    /* margin-left: 24.5%; */
-    padding:0 2%;
+    margin-top: 20px;
+    padding:0 100px;
+    text-align: end;
 }
+.change-page button{
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 50%;
+    border: 1px solid var(--mau-xam);
+    color: var(--mau-den);
+    transition: all .3s ease;
+}
+.change-page button:hover{
+    border-color: var(--mau-xanh);
+    
+}
+
+
+/* form dang ky */
+.register{
+    text-align: center;
+    width: 475px;
+    margin: 76px auto;
+    padding: 10px;
+}
+.form-title{
+    font-size: 26px;
+    margin:20px 0 25px;
+}
+.register input{
+    width: 100%;
+    height: 50px;
+    font-size: 14px;
+    color: #252525;
+    border: 1px solid var(--mau-den);
+    border-radius: 2px;
+    padding: 10px 25px;
+    margin-bottom: 10px;
+}
+.register input[type="submit"]{
+    width: 35%;
+    color: var(--mau-trang);
+    font-size: 16px;
+    background: var(--mau-xanh);
+    border-radius: 5px;
+    border: none;
+}
+.register input[type="submit"]:hover{
+    background-color: var(--mau-xanh-dam);
+}
+
+/* Contact */
+.contact {
+    display: flex;
+    background-color: var(--mau-trang);
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+.contact-info {
+    width: 394px;
+    margin: 40px;
+    text-align: left;
+    line-height: 1.8;
+    font-size: 15px;
+}
+.contact-info p {
+    margin: 15px 0;
+    color: var(--mau-den);
+}
+.contact-info i {
+    color: var(--mau-xanh);
+    padding: 10px;
+}
+
+.map {
+    width: 753px;
+    box-sizing: border-box;
+    border: 1px solid var(--mau-xam);
+    border-radius: 5px;
+}
+
 
 /* Footer Styles */
 footer {
+    clear: both;
     background: #ecf0f1;
-    color: #333;
+    color: var(--mau-den);
     padding: 20px 0;
     text-align: center;
-    border-top: 1px solid #bdc3c7;
+    border-top: 1px solid var(--mau-xam);
 }
 
 .footer-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
 }
-
+.footer-logo img{
+    mix-blend-mode: darken;
+    width: 234px;
+}
 .footer-logo h3 {
     font-family: 'Dancing Script', cursive;
     font-size: 2em;
@@ -367,7 +490,7 @@ footer {
 }
 
 .footer-social a:hover {
-    color: #3498db;
+    color: var(--mau-xanh);
 }
 
 .footer-newsletter form {
@@ -385,14 +508,14 @@ footer {
 }
 
 .footer-newsletter button {
-    background: #3498db;
-    color: #fff;
+    background: var(--mau-xanh);
+    color: var(--mau-trang);
     cursor: pointer;
     transition: background 0.3s;
 }
 
 .footer-newsletter button:hover {
-    background: #2980b9;
+    background: var(--mau-xanh-dam);
 }
 
 .footer-navigation ul {
@@ -405,23 +528,18 @@ footer {
 }
 
 .footer-navigation ul li a {
-    color: #333;
+    color: var(--mau-den);
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .footer-navigation ul li a:hover {
-    color: #3498db;
-}
-
-.footer-contact p {
-    margin: 5px 0;
-    color: #7f8c8d;
+    color: var(--mau-xanh);
 }
 
 .footer-bottom {
     margin-top: 20px;
-    color: #7f8c8d;
+    color: var(--mau-xam);
 }
 
 @media (max-width: 768px) {
