@@ -42,20 +42,71 @@
         <main class="main">
             <section class="cart">
                 <h1> Giỏ hàng của bạn</h1>
-                <div class="cart-container">
+                <div class="cart-container grid-5 m0">
+                    <!-- header -->
                     <div class="cart-head">
                         <div class="cart-title">Sản phẩm</div>
                         <div class="cart-title">Giá</div>
                         <div class="cart-title">Số lượng</div>
                         <div class="cart-title">Thành tiền</div>
                     </div>
+                    <!-- item -->
+                    <div class="cart-item">
+                        <div class="cart-image">
+                            <img src="./images/book3.jpg" alt="">
+                        </div>
+                        <div class="cart-product-name">
+                            <p> Nhật ký thức ăn</p>
+                        </div>
+                        <div class="cart-price">
+                            <span>10.000</span>
+                        </div>
+                        <div class="quantity">
+                            <button type="button" class="increment">
+                                <i class="fa-solid fa-caret-up"></i>
+                            </button>
+                            <input type="number" min="1" max="1000" name="" id="" value="1">
+                            <button type="button" class="decrement">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </button>
+                        </div>
+                        <div class="cart-price">
+                            <span>10.000</span>
+                        </div>
+                    </div>
 
+                    <div class="cart-item">
+                        <div class="cart-image">
+                            <img src="./images/book3.jpg" alt="">
+                        </div>
+                        <div class="cart-product-name">
+                            <p> Nhật ký thức ăn</p>
+                        </div>
+                        <div class="cart-price">
+                            <span>10.000</span>
+                        </div>
+                        <div class="quantity">
+                            <button type="button" class="increment">
+                                <i class="fa-solid fa-caret-up"></i>
+                            </button>
+                            <input type="number" min="1" max="1000" name="" id="" value="1">
+                            <button type="button" class="decrement">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </button>
+                        </div>
+                        <div class="cart-price">
+                            <span>10.000</span>
+                        </div>
+                    </div>
+
+
+                    <!-- item -->
                 </div>
             </section>
         </main>
 
         <!-- footer -->
-        <footer>
+        <footer class="footer">
             <div class="footer-policy">
                 <div class="policy-item">
                     <div class="policy-icon">
@@ -87,11 +138,6 @@
                         <input type="email" name="email" placeholder="Your email address">
                         <button type="submit">Subscribe</button>
                     </form>
-                </div>
-                <div class="footer-contact">
-                    <h3>Contact Us</h3>
-                    <p>Email: support@bookstore.com</p>
-                    <p>Phone: +1 234 567 890</p>
                 </div>
             </div>
             <div class="footer-bottom">
