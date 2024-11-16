@@ -736,6 +736,7 @@ a {
     margin: 15px 0;
     border-radius: 5px;
     border: 1px solid var(--mau-xam);
+    background-color: var(--mau-xam);
 }
 
 .shipping-info p {
@@ -755,9 +756,133 @@ a {
     display: flex;
 }
 
+.content-box-row input {
+    margin: 0 10px;
+}
+
 .content-box-row~.content-box-row {
     border-top: 1px solid var(--mau-xam);
 }
+
+/* sidebar */
+.sidebar {
+    padding-left: 20px;
+}
+
+.sidebar-header h2 {
+    font-size: 20px;
+}
+
+
+.order-summary {
+    min-height: 100px;
+}
+
+.discount-code {
+    padding: 10px 5px;
+    border-top: 1px solid var(--mau-xam);
+}
+
+.discount-code input {
+    width: 65%;
+    margin: 0 4px;
+}
+
+.discount-code input:focus {
+    outline: none;
+}
+
+.discount-code button {
+    position: relative;
+    width: 30%;
+    height: 44px;
+    color: var(--mau-trang);
+    background-color: var(--mau-xanh);
+    border: none;
+    border-radius: 5px;
+}
+
+.discount-code button:hover {
+    background-color: var(--mau-xanh-dam);
+}
+
+.total-list table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.total-list table tbody {
+    padding: 10px 5px;
+    border-top: 1px solid var(--mau-xam);
+}
+
+.total-list table tfoot {
+    padding: 10px 5px;
+    border-top: 1px solid var(--mau-xam);
+}
+
+.total-list table {
+    width: 100%;
+}
+
+.total-list table td:first-child {
+    text-align: left;
+    padding: 10px;
+}
+
+.total-list table td:last-child {
+    text-align: right;
+    padding: 10px;
+}
+
+.total-list table tfoot td:last-child {
+    text-align: right;
+    padding: 10px;
+    font-size: 30px;
+    color: var(--mau-xanh);
+}
+
+.sidebar-nav {
+    width: 100%;
+    justify-content: space-between;
+    padding: 10px 5px;
+    border-top: 1px solid var(--mau-xam);
+}
+
+.sidebar-nav button {
+    width: 40%;
+    height: 44px;
+    color: var(--mau-trang);
+    background-color: var(--mau-xanh);
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none;
+    border: none;
+}
+
+.sidebar-nav button:hover {
+    background-color: var(--mau-xanh-dam);
+}
+
+.sidebar-nav a {
+    height: 20px;
+}
+
+.sidebar-nav a i,
+.sidebar-nav a span {
+    color: var(--mau-xanh);
+    transition: all .3s ease;
+}
+
+.sidebar-nav a:hover i {
+    transform: translateX(-6px);
+    color: var(--mau-xanh-dam);
+}
+
+.sidebar-nav a:hover span {
+    color: var(--mau-xanh-dam);
+}
+
 
 /* Footer Styles */
 footer {
