@@ -1,0 +1,285 @@
+* {
+    box-sizing: border-box;
+    color: var(--mau-den);
+}
+
+:root {
+    --mau-xanh: #3498db;
+    --mau-xanh-dam: #2980b9;
+    --mau-trang: #fff;
+    --mau-den: #333;
+    --mau-xam: #ccc;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--mau-trang);
+    color: var(--mau-den);
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header,
+.main,
+.footer {
+    max-width: 1476px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.right {
+    margin: 0;
+    width: 75%;
+    float: right;
+}
+
+.flex {
+    display: flex;
+}
+
+.left {
+    text-align: end;
+    margin: 0;
+    width: 22%;
+    float: left;
+}
+
+.w85 {
+    width: 85%;
+}
+
+.w68 {
+    width: 68%;
+}
+
+.m0 {
+    margin: 0 auto;
+}
+
+.margin0 {
+    margin: 0;
+}
+
+.text-start {
+    text-align: start;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* Header Styles */
+
+.header-container {
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+    background-color: var(--mau-trang);
+    padding: 10px 10%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    mix-blend-mode: darken;
+    width: 150px;
+    height: auto;
+}
+
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.searcinput {
+    width: 100%;
+    padding: 10px 40px 10px 20px;
+    border: 2px solid #888;
+    border-radius: 50px;
+    font-size: 17px;
+    outline: none;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.searcinput::placeholder {
+    color: #aaa;
+}
+
+.search:hoveinput {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-color: var(--mau-xanh);
+}
+
+.search i {
+    position: absolute;
+    right: 10px;
+    color: var(--mau-xam);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search i:active {
+    color: var(--mau-den);
+}
+
+.user-options a {
+    color: var(--mau-den);
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.user-options a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation Styles */
+.admin_menu {
+    list-style: none;
+    padding: 0 10%;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+}
+
+.admin_menu a {
+    display: block;
+    padding: 10px 10px;
+    color: var(--mau-den);
+    margin: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.admin_menu a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 4px;
+    background-color: var(--mau-xanh);
+    border-radius: 4px;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.admin_menu a:hover {
+    color: #ea7e85;
+}
+
+.admin_menu a:hover::after {
+    width: calc(100% - 20px);
+    left: 10px;
+}
+
+/* main */
+
+
+
+
+/* Footer Styles */
+footer {
+    clear: both;
+    background: #ecf0f1;
+    color: var(--mau-den);
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid var(--mau-xam);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-logo img {
+    mix-blend-mode: darken;
+    width: 234px;
+}
+
+.footer-logo h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+    color: #2c3e50;
+}
+
+.footer-social a {
+    color: #2c3e50;
+    margin: 0 10px;
+    font-size: 1.5em;
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: var(--mau-xanh);
+}
+
+.footer-newsletter form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-newsletteinput,
+.footer-newsletter button {
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.footer-newsletter button {
+    background: var(--mau-xanh);
+    color: var(--mau-trang);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.footer-newsletter button:hover {
+    background: var(--mau-xanh-dam);
+}
+
+.footer-navigation ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-navigation ul li {
+    margin: 5px 0;
+}
+
+.footer-navigation ul li a {
+    color: var(--mau-den);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-navigation ul li a:hover {
+    color: var(--mau-xanh);
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    color: var(--mau-xam);
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
