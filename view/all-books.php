@@ -6,6 +6,8 @@ $bookController = new BookController();
 $books = $bookController->getBooks();
 $authors = $bookController->getAllAuthors();
 
+
+
 $categoryCotroller = new CategoryController();
 $categories = $categoryCotroller->getCategories();
 ?>
@@ -27,7 +29,6 @@ $categories = $categoryCotroller->getCategories();
                             foreach ($categories as $category) {
                                 echo '
                                         <li><a href="#">' . $category["name"] . '</a></li>
-                                        
                                     ';
                             }
                         } else {
@@ -37,8 +38,6 @@ $categories = $categoryCotroller->getCategories();
                     </ul>
                 </div>
             </div>
-
-
 
             <div class="aside-item">
                 <div class="aside-title">
@@ -77,10 +76,15 @@ $categories = $categoryCotroller->getCategories();
                 if (isset($books) && is_array($books)) {
                     foreach ($books as $book) {
                         echo '<div class="book-item">
-                                <img src="../images/' . $book['image'] . '" alt="">
-                                <h3 class="ellipsis">' . $book['title'] . '</h3>
+                                <a href="../php/main.php?act=detail&id='.$book['book_id'].'">
+                                    <img src="../images/' . $book['image'] . '" alt="">
+                                </a>
+                                <a href="../php/main.php?act=detail&id='.$book['book_id'].'">
+                                    <h3 class="ellipsis">' . $book['title'] . '</h3>
+                                </a>
                                 <p>' . number_format($book['price'], 0, '', '.') . ' VND</p>
                                 <form action="../controller/cartController.php" method="post">
+                                    <input type="hidden" name="id" value="' . $book['book_id'] . '">
                                     <input type="hidden" name="anhsp" value="' . $book['image'] . '">
                                     <input type="hidden" name="tensp" value="' . $book['title'] . '">
                                     <input type="hidden" name="gia" value="' . $book['price'] . '">

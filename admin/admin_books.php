@@ -1,6 +1,6 @@
 <?php
 
-include_once ROOT_DIR . '/controller/bookController.php';
+include_once  '../controller/bookController.php';
 
 $book = new BookController();
 
@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $category_id = $_POST['category_id'];
         $stock = $_POST['stock'];
         $image = $_POST['image'];
+        // move_uploaded_file();
         $book->addBook($title, $author, $publisher, $price, $description, $category_id, $stock, $image);
         echo "Sách đã được thêm thành công!";
     } elseif (isset($_POST['delete_book'])) {
@@ -30,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $category_id = $_POST['category_id'];
         $stock = $_POST['stock'];
         $image = $_POST['image'];
+        // move_uploaded_file();
         $book->editBook($book_id, $title, $author, $publisher, $price, $description, $category_id, $stock, $image);
         echo "Sách đã được cập nhật thành công!";
     }
@@ -42,7 +44,7 @@ $books = $book->getBooks();
         <h1>Quản lý Sách</h1>
     </div>
     <div class="admin-form w85 m0">
-        <form action="index.php?action=books" method="post">
+        <form action="index.php?action=books" method="post" enctype="multipart/form-data">
             <input type="hidden" name="add_book" value="1">
             <label for="title">Tiêu đề:</label>
             <input type="text" id="title" name="title"><br>
@@ -51,15 +53,15 @@ $books = $book->getBooks();
             <label for="publisher">Nhà xuất bản:</label>
             <input type="text" id="publisher" name="publisher"><br>
             <label for="price">Giá:</label>
-            <input type="number" step="0.01" id="price" name="price"><br>
-            <label for="description">Mô tả:</label>
-            <textarea id="description" name="description"></textarea><br>
+            <input type="number" step="1000" id="price" name="price"><br>
             <label for="category_id">ID Danh mục:</label>
             <input type="number" id="category_id" name="category_id"><br>
             <label for="stock">Số lượng:</label>
             <input type="number" id="stock" name="stock"><br>
             <label for="image">Hình ảnh:</label>
             <input type="text" id="image" name="image"><br>
+            <label for="description">Mô tả:</label>
+            <textarea rows="5" cols="70" id="description" name="description" style="resize: none;"></textarea><br>
             <input type="submit" value="Thêm sách">
         </form>
     </div>
@@ -105,7 +107,7 @@ $books = $book->getBooks();
                                         <input type="text" name="title" value="' . $book['title'] . '">
                                         <input type="text" name="author" value="' . $book['author'] . '">
                                         <input type="text" name="publisher" value="' . $book['publisher'] . '">
-                                        <input type="number" step="0.01" name="price" value="' . $book['price'] . '">
+                                        <input type="number" step="1000" name="price" value="' . $book['price'] . '">
                                         <textarea name="description">' . $book['description'] . '</textarea>
                                         <input type="number" name="category_id" value="' . $book['category_id'] . '">
                                         <input type="number" name="stock" value="' . $book['stock'] . '">

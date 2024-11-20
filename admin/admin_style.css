@@ -80,7 +80,7 @@ a {
 
 .header-container {
     display: flex;
-    /* justify-content: space-around; */
+    justify-content: space-around;
     align-items: center;
     background-color: var(--mau-trang);
     padding: 10px 10%;

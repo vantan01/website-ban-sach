@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,8 +23,16 @@
                     <i class="fas fa-search"></i>
                 </div>
                 <div class="user-options">
-                    <a href="../php/main.php?act=register" class="account"><i class="fas fa-user"></i> Account</a>
-                    <a href="../php/main.php?act=cart" class="cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+                    <a href="../php/main.php?act=register" class="account"><i class="fas fa-user"></i> Đăng ký</a>
+                    <a href="../php/main.php?act=pagelogin" class="account"><i class="fas fa-user"></i> Đăng nhập</a>
+                    <a  href="../php/main.php?act=cart" class="cart cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">
+                            <?php 
+                            // $cartCount 
+                            ?>22
+                        </span>
+                    </a>
                 </div>
             </div>
             <nav class="nav">

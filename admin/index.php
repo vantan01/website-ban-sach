@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-</head>
-<body>
-    <?php
-        define('ROOT_DIR', dirname(__DIR__));
-        include './header.php';
-        include './menu.php';
+<?php
+session_start();
+ob_start();
+if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
 
-        include './main.php';
-        
-        include './footer.php';
-    ?>
+    define('ROOT_DIR', dirname(__DIR__));
+    include './header.php';
+    include './menu.php';
 
-</body>
-</html>
+    $action = isset($_GET['action']) ? $_GET['action'] : '';
+
+    switch ($action) {
+        case 'category':
+            include 'admin_category.php';
+            break;
+        case 'books':
+            include 'admin_books.php';
+            break;
+        default:
+            include 'dashboard.php';
+            break;
+    }
+
+    include './footer.php';
+} else {
+    header('location: ../php/main.php');
+}

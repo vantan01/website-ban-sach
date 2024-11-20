@@ -1,5 +1,6 @@
 <?php
-include_once ROOT_DIR . '/model/Book.php';
+
+include_once  '../model/Book.php';
 
 class BookController
 {
@@ -20,6 +21,10 @@ class BookController
         $stmt = $this->book->readBooksByCategory($category_id);
         return $stmt->fetch_all(MYSQLI_ASSOC);
     }
+    public function getCategoryID()
+    {
+        // return $this->book->getCategoryID();
+    }
     public function addBook($title, $author, $publisher, $price, $description, $category_id, $stock, $image)
     {
         $this->book->create($title, $author, $publisher, $price, $description, $category_id, $stock, $image);
@@ -38,5 +43,9 @@ class BookController
     {
         $stmt = $this->book->getAllAuthors();
         return $stmt->fetch_all(MYSQLI_ASSOC);
+    }
+    public function getBookById($id)
+    {
+        return $this->book->getBookById($id);
     }
 }

@@ -60,7 +60,9 @@ a {
 .m0 {
     margin: 0 auto;
 }
-
+.clear{
+    clear: both;
+}
 .margin0 {
     margin: 0;
 }
@@ -141,6 +143,35 @@ a {
 
 .user-options a:hover {
     text-decoration: underline;
+}
+
+/* cart */
+
+.cart-icon {
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
+}
+.cart-icon i{
+    
+    transform: rotate(-10deg);
+}
+.cart-count {
+    display: flex;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--mau-xanh);
+    color: white;
+    border-radius: 50%;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 23px;
+    width: 23px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 /* Navigation Styles */
@@ -515,7 +546,7 @@ a {
 .register {
     text-align: center;
     width: 475px;
-    margin: 15px auto 80px;
+    margin: 15px auto 20px;
     padding: 10px;
 }
 
@@ -618,7 +649,9 @@ a {
     /* justify-content: flex-start; */
     width: 15%;
 }
-
+.del-cart-item{
+    width: 2%;
+}
 .cart-item img {
     height: 100%;
 
@@ -626,7 +659,7 @@ a {
 
 .cart-product-name {
     display: flex;
-    width: 33%;
+    width: 32%;
     padding: 0 2%;
     align-items: center;
     text-align: start;
@@ -636,7 +669,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 22%;
+    width: 20%;
 }
 
 .quantity {
@@ -644,6 +677,7 @@ a {
     align-items: center;
     justify-content: center;
     width: 100px;
+    height: 100px;
     min-width: 100px;
     padding: 10px;
     position: relative;
@@ -656,15 +690,14 @@ a {
     font-size: 18px;
     border: 1px solid var(--mau-xanh);
     border-radius: 3px;
-    position: relative;
 }
 
 .quantity input:focus {
     outline: none;
 }
 
-.quantity .increment,
-.quantity .decrement {
+.increment,
+.decrement {
     position: absolute;
     right: 10%;
     width: 20px;
@@ -680,11 +713,11 @@ a {
     z-index: 20;
 }
 
-.quantity .increment {
+.increment {
     top: 34px;
 }
 
-.quantity .decrement {
+.decrement {
     bottom: 34px;
 }
 
@@ -984,7 +1017,28 @@ a {
 .sidebar-nav a:hover span {
     color: var(--mau-xanh-dam);
 }
+/* book detail */
+.book-detail {
+    border: 1px solid var(--mau-xam);
+    padding: 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.book-detail-item{
+    width: 50%;
+}
+.book-detail img {
+    max-width: 100%;
+    height: auto;
+}
 
+.book-detail h3 {
+    margin: 10px 0;
+}
+
+.book-detail p {
+    margin: 5px 0;
+}
 
 /* Footer Styles */
 footer {

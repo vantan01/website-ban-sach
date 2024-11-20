@@ -37,6 +37,13 @@ class Book
         $stmt->execute();
         return $stmt->get_result();
     }
+    public function getCategoryID()
+    {
+        // $query = "SELECT category_id FROM " . $this->table_name;
+        // $stmt = $this->conn->prepare($query);
+        // $stmt->execute();
+        // return $stmt->get_result();
+    }
     public function create($title, $author, $publisher, $price, $description, $category_id, $stock, $image)
     {
         $query = "INSERT INTO " . $this->table_name . " (title, author, publisher, price, description, category_id, stock, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -66,5 +73,16 @@ class Book
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->get_result();
+    }
+    public function getBookById($id)
+    {
+        $query = "SELECT * FROM books WHERE book_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $book = $result->fetch_assoc();
+        $stmt->close();
+        return $book;
     }
 }

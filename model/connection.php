@@ -1,5 +1,5 @@
 <?php
-
+// define('ROOT_DIR', dirname(__DIR__));
 class Database {
     private $host = "localhost";
     private $db_name = "bookstore_demo";

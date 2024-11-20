@@ -1,3 +1,7 @@
+<?php
+     include_once '../controller/CartController.php'; 
+?>
+
 <main class="main">
     <div class="slider">
         <div class="slides">
@@ -27,23 +31,31 @@
             </div>
         </div>
         <div class="product-grid nowrap grid-5">
-            <?php include_once '../controller/BookController.php';
+            <?php 
+            include_once '../controller/BookController.php';
             $bookController = new BookController();
-            $category_id = 1;
+
+            $category_id =1; // hard code
             $books = $bookController->getBooksByCategory($category_id);
             if (isset($books) && is_array($books)) {
                 foreach ($books as $book) {
                     echo '<div class="book-item">
-                            <img src="../images/' . $book['image'] . '" alt="">
-                            <h3 class="ellipsis">' . $book['title'] . '</h3>
+                            <a href="../php/main.php?act=detail&id='.$book['book_id'].'">
+                                <img src="../images/' . $book['image'] . '" alt="">
+                            </a>
+                            <a href="../php/main.php?act=detail&id='.$book['book_id'].'">
+                                <h3 class="ellipsis">' . $book['title'] . '</h3>
+                            </a>
                             <p>' . number_format($book['price'], 0, '', '.') . ' VND</p>
-                            <form action="../controller/BookController.php" method="post">
+                            <form action="../controller/cartController.php" method="post">
+                                <input type="hidden" name="id" value="' . $book['book_id'] . '">
                                 <input type="hidden" name="anhsp" value="' . $book['image'] . '">
                                 <input type="hidden" name="tensp" value="' . $book['title'] . '">
                                 <input type="hidden" name="gia" value="' . $book['price'] . '">
                                 <input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart">
                             </form>
-                        </div>';
+                        </div>
+                    ';
                 }
             } else {
                 echo 'Không có sách nào trong danh sách.';
@@ -57,7 +69,7 @@
     </div>
     <div class="section">
         <div class="title-category w85 m0">
-            <span>SÁCH MỚI</span>
+            <span>   SÁCH CŨ  </span>
         </div>
         <div class="product-nav">
             <div class="prev">
@@ -75,10 +87,15 @@
             if (isset($books) && is_array($books)) {
                 foreach ($books as $book) {
                     echo '<div class="book-item">
-                            <img src="../images/' . $book['image'] . '" alt="">
-                            <h3 class="ellipsis">' . $book['title'] . '</h3>
+                             <a href="../php/main.php?act=detail&id='.$book['book_id'].'">
+                                <img src="../images/' . $book['image'] . '" alt="">
+                            </a>
+                            <a href="../php/main.php?act=detail&id='.$book['book_id'].'">
+                                <h3 class="ellipsis">' . $book['title'] . '</h3>
+                            </a>
                             <p>' . number_format($book['price'], 0, '', '.') . ' VND</p>
-                            <form action="../controller/BookController.php" method="post">
+                            <form action="../controller/cartController.php" method="post">
+                                <input type="hidden" name="id" value="' . $book['book_id'] . '">
                                 <input type="hidden" name="anhsp" value="' . $book['image'] . '">
                                 <input type="hidden" name="tensp" value="' . $book['title'] . '">
                                 <input type="hidden" name="gia" value="' . $book['price'] . '">

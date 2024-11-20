@@ -9,6 +9,9 @@ switch ($act) {
     case 'cart':
         include ROOT_DIR .'/view/cart_view.php';
         break;
+    case 'detail':
+        include ROOT_DIR .'/view/book_detail.php';
+        break;
     case 'register':
         include ROOT_DIR .'/view/register.php';
         break;
@@ -18,9 +21,13 @@ switch ($act) {
     case 'contact':
         include ROOT_DIR .'/view/contact.php';
         break;
-        // case 'cart':
-        //     include '../view/cart.php';
-        //     break;
+    case 'pagelogin':
+        include '../admin/login.php';
+        break;
+    case 'pagelogout':
+        if(isset($_SESSION['role']))
+            unset($_SESSION['role']);
+        break;
         // case 'about':
         //     include '../view/about.php';
         //     break;
