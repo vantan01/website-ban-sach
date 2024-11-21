@@ -20,7 +20,6 @@ if (isset($_POST['addcart']) && $_POST['addcart']) {
 
     $quantity = ((isset($_POST['quantity'])) && $_POST['quantity'] > 0) ? $_POST['quantity'] : 1;
 
-
     // Kiểm tra sản phẩm đã tồn tại trong giỏ hàng chưa
     $found = false;
     for ($i = 0; $i < sizeof($_SESSION['cart']); $i++) {

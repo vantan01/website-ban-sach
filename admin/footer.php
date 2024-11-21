@@ -16,7 +16,7 @@
 
             <div class="footer-container">
                 <div class="footer-logo">
-                    <img src="./images/logo.jpg" alt="Logo">
+                    <img src="../images/logo.jpg" alt="Logo">
                     <h3 class="ellipsis">Magic book</h3>
                 </div>
                 <div class="footer-social">

@@ -102,7 +102,7 @@ a {
     margin: 0 auto;
 }
 
-.searcinput {
+.search input {
     width: 100%;
     padding: 10px 40px 10px 20px;
     border: 2px solid #888;
@@ -112,7 +112,7 @@ a {
     transition: box-shadow 0.3s, border-color 0.3s;
 }
 
-.searcinput::placeholder {
+.search input::placeholder {
     color: #aaa;
 }
 

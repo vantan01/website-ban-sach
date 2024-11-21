@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,12 +22,20 @@
                     <i class="fas fa-search"></i>
                 </div>
                 <div class="user-options">
-                    <a href="../php/main.php?act=register" class="account"><i class="fas fa-user"></i> Đăng ký</a>
-                    <a href="../php/main.php?act=pagelogin" class="account"><i class="fas fa-user"></i> Đăng nhập</a>
-                    <a  href="../php/main.php?act=cart" class="cart cart-icon">
+                    <?php
+                    if (isset($_SESSION['email']) && $_SESSION['email'] != '') {
+                        echo '<a href="../php/main.php?act=account" class="account"><i class="fas fa-user"></i> ' . $_SESSION['email'] . '</a>';
+                        echo '<a href="../php/main.php?act=pagelogout" class="account"><i class="fas fa-user"></i> Đăng xuất</a>';
+                        
+                    } else {
+                        echo '<a href="../php/main.php?act=register" class="account"><i class="fas fa-user"></i> Đăng ký</a>';
+                        echo '<a href="../php/main.php?act=pagelogin" class="account"><i class="fas fa-user"></i> Đăng nhập</a>';
+                    }
+                    ?>
+                    <a href="../php/main.php?act=cart" class="cart cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">
-                            <?php 
+                            <?php
                             // $cartCount 
                             ?>22
                         </span>

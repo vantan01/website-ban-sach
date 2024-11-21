@@ -27,10 +27,15 @@ switch ($act) {
     case 'pagelogout':
         if(isset($_SESSION['role']))
             unset($_SESSION['role']);
+        if(isset($_SESSION['email']))
+            unset($_SESSION['email']);
+        if(isset($_SESSION['account_id']))
+            unset($_SESSION['account_id']);
+        header('location: ../php/main.php');
         break;
-        // case 'about':
-        //     include '../view/about.php';
-        //     break;
+    case 'account':
+        include '../view/account.php';
+        break;
     default:
         include ROOT_DIR .'/view/home.php';
         break;
