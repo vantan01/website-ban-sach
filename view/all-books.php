@@ -75,20 +75,28 @@ $categories = $categoryCotroller->getCategories();
                 <?php
                 if (isset($books) && is_array($books)) {
                     foreach ($books as $book) {
+                        $in_stock = $book['stock'] != 0;
                         echo '<div class="book-item">
-                                <a href="../php/main.php?act=detail&id='.$book['book_id'].'">
+                                <a href="../php/main.php?act=detail&id=' . $book['book_id'] . '">
                                     <img src="../images/' . $book['image'] . '" alt="">
                                 </a>
-                                <a href="../php/main.php?act=detail&id='.$book['book_id'].'">
+                                <a href="../php/main.php?act=detail&id=' . $book['book_id'] . '">
                                     <h3 class="ellipsis">' . $book['title'] . '</h3>
                                 </a>
-                                <p>' . number_format($book['price'], 0, '', '.') . ' VND</p>
-                                <form action="../controller/cartController.php" method="post">
+                                <p>' . number_format($book['price'], 0, '', '.') . ' VND</p>';
+                        if (!$in_stock) {
+                            echo '<span> Hết hàng</span>';
+                        } else {
+                            echo '<span> Còn hàng</span>';
+                        }
+                        echo '<form action="../controller/cartController.php" method="post">
                                     <input type="hidden" name="id" value="' . $book['book_id'] . '">
                                     <input type="hidden" name="anhsp" value="' . $book['image'] . '">
                                     <input type="hidden" name="tensp" value="' . $book['title'] . '">
                                     <input type="hidden" name="gia" value="' . $book['price'] . '">
-                                    <input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart">
+                                    <input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart"';
+                        if (!$in_stock) echo ' style="background-color:transparent;color: transparent; cursor:unset " disabled ';
+                        echo ' >
                                 </form>
                             </div>';
                     }

@@ -45,6 +45,6 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
 
                 </div>
             </div>';
-}else{
+} else {
     echo "<script>alert('Có lỗi xảy ra =<');</script>";
 }

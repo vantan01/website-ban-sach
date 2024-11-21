@@ -26,7 +26,6 @@
                     if (isset($_SESSION['email']) && $_SESSION['email'] != '') {
                         echo '<a href="../php/main.php?act=account" class="account"><i class="fas fa-user"></i> ' . $_SESSION['email'] . '</a>';
                         echo '<a href="../php/main.php?act=pagelogout" class="account"><i class="fas fa-user"></i> Đăng xuất</a>';
-                        
                     } else {
                         echo '<a href="../php/main.php?act=register" class="account"><i class="fas fa-user"></i> Đăng ký</a>';
                         echo '<a href="../php/main.php?act=pagelogin" class="account"><i class="fas fa-user"></i> Đăng nhập</a>';

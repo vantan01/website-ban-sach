@@ -1,6 +1,7 @@
 <?php
 // define('ROOT_DIR', dirname(__DIR__));
-class Database {
+class Database
+{
     private $host = "localhost";
     private $db_name = "bookstore_demo";
     private $username = "root";
@@ -8,7 +9,8 @@ class Database {
     private static $instance = null;
     private $conn;
 
-    private function __construct() {
+    private function __construct()
+    {
         $this->conn = new mysqli($this->host, $this->username, $this->password, $this->db_name);
 
         if ($this->conn->connect_error) {
@@ -18,15 +20,16 @@ class Database {
         $this->conn->set_charset("utf8");
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (self::$instance == null) {
             self::$instance = new Database();
         }
         return self::$instance;
     }
 
-    public function getConnection() {
+    public function getConnection()
+    {
         return $this->conn;
     }
 }
-?>

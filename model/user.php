@@ -27,27 +27,29 @@ class Account
     //     $stmt->execute();
     //     return $stmt->get_result();
     // }
-    public function checkUser($username, $password){
+    public function checkUser($username, $password)
+    {
         $query = "SELECT role FROM " . $this->table_name . " WHERE email = ? AND password = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
         $kq = $result->fetch_assoc();
-    
+
         return $kq ? $kq['role'] : null;
     }
-    public function getUser($username, $password){
+    public function getUser($username, $password)
+    {
         $query = "SELECT * FROM " . $this->table_name . " WHERE email = ? AND password = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
         $kq = $result->fetch_assoc();
-    
+
         return $kq ? $kq : null;
     }
-    
+
 
 
     // public function readBooksByCategory($category_id)

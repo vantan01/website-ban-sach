@@ -17,15 +17,15 @@ include '../controller/cartController.php';
             <div class="cart-main">
 
                 <?php
-                $total_price = 0;   
+                $total_price = 0;
                 if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
-                    $pos=0;
+                    $pos = 0;
                     foreach ($_SESSION['cart'] as $item) {
                         $thanhtien = intval($item[3]) * $item[4];
                         $total_price += $thanhtien;
                         echo '<div class="cart-item">
                         <div class="del-cart-item">
-                        <form action="../controller/cartController.php?pos='.$pos.'" method="post">
+                        <form action="../controller/cartController.php?pos=' . $pos . '" method="post">
                             <input type="submit" name="del-cart-item" value="X">
                         </form>
                         </div>
@@ -46,10 +46,10 @@ include '../controller/cartController.php';
                                         </form>
                                         </div>
                                         <div class="cart-price">
-                                            <span>' . number_format($thanhtien, 0, '', '.') .' VNĐ </span>
+                                            <span>' . number_format($thanhtien, 0, '', '.') . ' VNĐ </span>
                                         </div>
                                     </div>';
-                                    $pos++;
+                        $pos++;
                     }
                 }
 
@@ -63,7 +63,7 @@ include '../controller/cartController.php';
                         <td>
                             <span>Tổng số thành tiền:</span>
                             <strong>
-                                <span class="totals-price"><?=number_format($total_price, 0, '', '.')?> VNĐ</span>
+                                <span class="totals-price"><?= number_format($total_price, 0, '', '.') ?> VNĐ</span>
                             </strong>
                         </td>
                     </tr>

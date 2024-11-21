@@ -14,23 +14,23 @@ if ((isset($_POST['login'])) && ($_POST['login'])) {
     $result = $account->getUser($email, $password);
     //check email bị trùng trước
     if (!empty($result)) {
-        switch ($result['role']) { 
-            case '1': 
+        switch ($result['role']) {
+            case '1':
                 $_SESSION['role'] = $result['role'];
-                header('Location: index.php'); 
-                break; 
-            case '0': 
+                header('Location: index.php');
+                break;
+            case '0':
                 $_SESSION['role'] = $result['role'];
                 $_SESSION['email'] = $result['email'];
                 $_SESSION['account_id'] = $result['account_id'];
                 header('Location: ../php/main.php?act=account');
-                break; 
-            default: 
-            echo 'Sai email hoặc mật khẩu!!!';
-            }
-        } else { 
-            echo 'Sai email hoặc mật khẩu!!!';
-        }      
+                break;
+            default:
+                echo 'Sai email hoặc mật khẩu!!!';
+        }
+    } else {
+        echo 'Sai email hoặc mật khẩu!!!';
+    }
 }
 ?>
 <main class="main">

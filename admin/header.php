@@ -24,7 +24,7 @@
                 <div class="user-options">
                     <?php
                     if (isset($_SESSION['role']) && $_SESSION['role'] == 1) {
-                         echo '<a href="" class="account"><i class="fas fa-user"></i> ADMIN </a>';
+                        echo '<a href="" class="account"><i class="fas fa-user"></i> ADMIN </a>';
                         echo '<a href="../php/main.php?act=pagelogout" class="account"><i class="fas fa-user"></i> Đăng xuất</a>';
                     } else {
                         echo '<a href="../php/main.php?act=register" class="account"><i class="fas fa-user"></i> Đăng ký</a>';
