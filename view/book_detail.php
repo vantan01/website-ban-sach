@@ -32,7 +32,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                             <i class="fa-solid fa-caret-down decrement" onclick="updateQuantity(-1,this)"></i>
                         </div><br>';
     if ($kq['stock'] == 0) {
-        echo '<input type="" name="" value="Hết hàng" class="add-to-cart" disabled>';
+        echo '<input value="Hết hàng" class="add-to-cart" disabled>';
     } else {
         echo '<input type="submit" name="addcart" value="Thêm vào giỏ hàng" class="add-to-cart">';
     }

@@ -289,8 +289,7 @@ a {
     transition: all 0.3s ease;
 }
 
-.title-catagory span {
-}
+.title-catagory span {}
 
 /* 
 .title-catagory {
@@ -457,6 +456,16 @@ a {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
+}
+
+.out-of-stock {
+    background-color: var(--mau-xam);
+    color: var(--mau-den);
+    height: 36px;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
 }
 
 .add-to-cart span {
@@ -637,9 +646,11 @@ a {
     font-size: 18px;
     color: var(--mau-xam);
 }
-.cart-container p a{
+
+.cart-container p a {
     color: var(--mau-cam);
 }
+
 .cart-head {
     border-bottom: 1px solid var(--mau-xanh);
     display: flex;

@@ -26,7 +26,7 @@ class User
         $stmt->execute();
         return $stmt->get_result();
     }
-    
+
     public function getUser($email, $password)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE email = ? AND password = ?";
@@ -40,7 +40,7 @@ class User
         return $kq ? $kq : null;
     }
 
-    public function create($email, $password )
+    public function create($email, $password)
     {
         $query = "INSERT INTO " . $this->table_name . " (email, password) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
@@ -56,11 +56,11 @@ class User
         $stmt->execute();
     }
 
-    public function update($account_id ,$email, $password, $phone, $address )
+    public function update($account_id, $email, $password, $phone, $address)
     {
         $query = "UPDATE " . $this->table_name . " SET email = ?, password = ?, phone = ?, address = ? WHERE account_id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ssssi", $email, $password, $phone, $address, $account_id );
+        $stmt->bind_param("ssssi", $email, $password, $phone, $address, $account_id);
         $stmt->execute();
     }
     // public function getAllAuthors()

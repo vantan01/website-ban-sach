@@ -1,29 +1,32 @@
 <?php
 include '../model/user.php';
+$email_validation_regex = '/^\\S+@\\S+\\.\\S+$/';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ob_start();
-if(isset($_POST['register'])&&$_POST['register']){
+if (isset($_POST['register']) && $_POST['register']) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $user = new User();
-    if($user->create($email,$password)){
-        $_SESSION['role'] = 0;
-        $_SESSION['email'] = $email;
-        if ($_SESSION['redirect_to'] == 'pagepayment') {
-            header('Location: ../php/main.php?act=pagepayment');
+    if (preg_match($email_validation_regex, $email)) {
+        $user = new User();
+        if ($user->create($email, $password)) {
+            $_SESSION['role'] = 0;
+            $_SESSION['email'] = $email;
+            if ($_SESSION['redirect_to'] == 'pagepayment') {
+                header('Location: ../php/main.php?act=pagepayment');
+            }
+            header('Location: ../php/main.php?act=account');
+        } else {
+            echo '<script>alert(" Đăng ký tài khoản không thành công ");</script>';
         }
-        header('Location: ../php/main.php?act=account');
-    }else{
-        echo "Đăng ký tài khoản không thành công";
+    } else {
+        echo '<script>alert("Email không hợp lệ");</script>';
     }
-
 }
 if ((isset($_POST['login'])) && ($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    // unset($_SESSION['role']);
     $user = new User();
     $result = $user->getUser($email, $password);
     echo empty(!$result);
@@ -33,22 +36,23 @@ if ((isset($_POST['login'])) && ($_POST['login'])) {
                 $_SESSION['role'] = $result['role'];
                 header('Location: index.php');
                 break;
-                case '0':
-                    $_SESSION['role'] = $result['role'];
-                    $_SESSION['email'] = $result['email'];
-                    $_SESSION['account_id'] = $result['account_id'];
-                    
-                    if ($_SESSION['redirect_to'] == 'pagepayment') {
-                        header('Location: ../php/main.php?act=pagepayment');
-                        break;
-                    }
+            case '0':
+                $_SESSION['role'] = $result['role'];
+                $_SESSION['email'] = $result['email'];
+                $_SESSION['account_id'] = $result['account_id'];
+
+                if ($_SESSION['redirect_to'] == 'pagepayment') {
+                    header('Location: ../php/main.php?act=pagepayment');
+                    break;
+                }
                 header('Location: ../php/main.php?act=account');
                 break;
             default:
-                echo 'Sai email hoặc mật khẩu!!!';
+                // echo '<script>alert("Sai email hoặc mật khẩu");</script>';
+                header('Location: ../php/main.php?act=pagelogin');
         }
     } else {
-        echo 'Sai email hoặc mật khẩu!!!';
+        header('Location: ../php/main.php?act=pagelogin');
     }
 }
 

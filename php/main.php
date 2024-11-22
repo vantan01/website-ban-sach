@@ -19,10 +19,10 @@ switch ($act) {
         include ROOT_DIR . '/admin/login.php';
         break;
     case 'pagepayment':
-        if(isset($_SESSION['role'])){
-            header( "location: ../view/payment.php");
-        }else{
-            $_SESSION['redirect_to'] = 'pagepayment'; 
+        if (isset($_SESSION['role'])) {
+            header("location: ../view/payment.php");
+        } else {
+            $_SESSION['redirect_to'] = 'pagepayment';
             include '../admin/login.php';
         }
         break;

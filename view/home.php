@@ -56,10 +56,13 @@ include_once '../controller/CartController.php';
                                 <input type="hidden" name="id" value="' . $book['book_id'] . '">
                                 <input type="hidden" name="anhsp" value="' . $book['image'] . '">
                                 <input type="hidden" name="tensp" value="' . $book['title'] . '">
-                                <input type="hidden" name="gia" value="' . $book['price'] . '">
-                                <input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart"';
-                    if (!$in_stock) echo ' style="background-color:transparent;color: transparent; cursor:unset " disabled ';
-                    echo ' >
+                                <input type="hidden" name="gia" value="' . $book['price'] . '">';
+                                if ($in_stock) {
+                                    echo '<input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart">';
+                                } else {
+                                    echo '<input value="Hết hàng" class="out-of-stock"  disabled>';
+                                }
+                    echo '
                             </form>
                         </div>';
                 }
@@ -112,8 +115,12 @@ include_once '../controller/CartController.php';
                                 <input type="hidden" name="tensp" value="' . $book['title'] . '">
                                 <input type="hidden" name="gia" value="' . $book['price'] . '">
                                 <input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart"';
-                    if (!$in_stock) echo ' style="background-color:transparent;color: transparent; cursor:unset " disabled ';
-                    echo ' >
+                                if ($in_stock) {
+                                    echo '<input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart">';
+                                } else {
+                                    echo '<input value="Hết hàng" class="out-of-stock" disabled>';
+                                }
+                    echo '
                             </form>
                         </div>';
                 }
