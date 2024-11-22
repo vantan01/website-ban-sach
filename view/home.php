@@ -6,7 +6,6 @@ include_once '../controller/CartController.php';
     <div class="slider">
         <div class="slides">
             <img src="../images/banner.jpg" class="slide" alt="">
-            <img src="../images/book2.jpg" class="slide" alt="">
             <img src="../images/book3.jpg" class="slide" alt="">
             <img src="../images/example.jpg" class="slide" alt="">
         </div>

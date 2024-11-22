@@ -1,13 +1,12 @@
 <?php
 include_once 'connection.php';
 
-class Account
+class User
 {
     private $conn;
     private $table_name = "account";
 
     public $account_id;
-    public $name;
     public $email;
     public $password;
     public $role;
@@ -20,29 +19,20 @@ class Account
         $this->conn = $database->getConnection();
     }
 
-    // public function readAll()
-    // {
-    //     $query = "SELECT * FROM " . $this->table_name;
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->execute();
-    //     return $stmt->get_result();
-    // }
-    public function checkUser($username, $password)
+    public function readAll()
     {
-        $query = "SELECT role FROM " . $this->table_name . " WHERE email = ? AND password = ?";
+        $query = "SELECT * FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
-        $result = $stmt->get_result();
-        $kq = $result->fetch_assoc();
-
-        return $kq ? $kq['role'] : null;
+        return $stmt->get_result();
     }
-    public function getUser($username, $password)
+    
+    public function getUser($email, $password)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE email = ? AND password = ?";
+        // $query ="SELECT * FROM `account` WHERE email = 'admin@test.com' and password = 'admin'";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ss", $username, $password);
+        $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
         $result = $stmt->get_result();
         $kq = $result->fetch_assoc();
@@ -50,46 +40,29 @@ class Account
         return $kq ? $kq : null;
     }
 
+    public function create($email, $password )
+    {
+        $query = "INSERT INTO " . $this->table_name . " (email, password) VALUES (?, ?)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ss", $email, $password);
+        return $stmt->execute() ? true : false;
+    }
 
+    public function delete($account_id)
+    {
+        $query = "DELETE FROM " . $this->table_name . " WHERE book_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $account_id);
+        $stmt->execute();
+    }
 
-    // public function readBooksByCategory($category_id)
-    // {
-    //     $query = "SELECT * FROM " . $this->table_name . " WHERE category_id = ?";
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->bind_param("i", $category_id);
-    //     $stmt->execute();
-    //     return $stmt->get_result();
-    // }
-    // public function getCategoryID()
-    // {
-    //     // $query = "SELECT category_id FROM " . $this->table_name;
-    //     // $stmt = $this->conn->prepare($query);
-    //     // $stmt->execute();
-    //     // return $stmt->get_result();
-    // }
-    // public function create($title, $author, $publisher, $price, $description, $category_id, , )
-    // {
-    //     $query = "INSERT INTO " . $this->table_name . " (title, author, publisher, price, description, category_id,,) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->bind_param("sssdssis", $title, $author, $publisher, $price, $description, $category_id, , );
-    //     $stmt->execute();
-    // }
-
-    // public function delete($book_id)
-    // {
-    //     $query = "DELETE FROM " . $this->table_name . " WHERE book_id = ?";
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->bind_param("i", $book_id);
-    //     $stmt->execute();
-    // }
-
-    // public function update($book_id, $title, $author, $publisher, $price, $description, $category_id, , )
-    // {
-    //     $query = "UPDATE " . $this->table_name . " SET title = ?, author = ?, publisher = ?, price = ?, description = ?, category_id = ?, = ?, = ? WHERE book_id = ?";
-    //     $stmt = $this->conn->prepare($query);
-    //     $stmt->bind_param("sssdssisi", $title, $author, $publisher, $price, $description, $category_id, , , $book_id);
-    //     $stmt->execute();
-    // }
+    public function update($account_id ,$email, $password, $phone, $address )
+    {
+        $query = "UPDATE " . $this->table_name . " SET email = ?, password = ?, phone = ?, address = ? WHERE account_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ssssi", $email, $password, $phone, $address, $account_id );
+        $stmt->execute();
+    }
     // public function getAllAuthors()
     // {
     //     $query = "SELECT DISTINCT author FROM " . $this->table_name;

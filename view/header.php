@@ -24,11 +24,11 @@
                 <div class="user-options">
                     <?php
                     if (isset($_SESSION['email']) && $_SESSION['email'] != '') {
-                        echo '<a href="../php/main.php?act=account" class="account"><i class="fas fa-user"></i> ' . $_SESSION['email'] . '</a>';
-                        echo '<a href="../php/main.php?act=pagelogout" class="account"><i class="fas fa-user"></i> Đăng xuất</a>';
+                        echo '<a href="../php/main.php?act=account" class="account"><i class="fas fa-user"></i> ' . explode('@',$_SESSION['email'])[0] . '</a>';
+                        echo '<a href="../php/main.php?act=pagelogout" class="account"><i class="fas fa-user"></i> THOÁT</a>';
                     } else {
-                        echo '<a href="../php/main.php?act=register" class="account"><i class="fas fa-user"></i> Đăng ký</a>';
-                        echo '<a href="../php/main.php?act=pagelogin" class="account"><i class="fas fa-user"></i> Đăng nhập</a>';
+                        echo '<a href="../php/main.php?act=pageregister" class="account"><i class="fas fa-user"></i> ĐĂNG KÝ</a>';
+                        echo '<a href="../php/main.php?act=pagelogin" class="account"><i class="fas fa-user"></i> ĐĂNG NHẬP</a>';
                     }
                     ?>
                     <a href="../php/main.php?act=cart" class="cart cart-icon">

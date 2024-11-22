@@ -1,6 +1,6 @@
 <?php
 include ROOT_DIR . '/controller/categoryController.php';
-include '../controller/BookController.php';
+include '../controller/bookController.php';
 
 $bookController = new BookController();
 $books = $bookController->getBooks();

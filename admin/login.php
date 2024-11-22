@@ -4,25 +4,44 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ob_start();
+if(isset($_POST['register'])&&$_POST['register']){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $user = new User();
+    if($user->create($email,$password)){
+        $_SESSION['role'] = 0;
+        $_SESSION['email'] = $email;
+        if ($_SESSION['redirect_to'] == 'pagepayment') {
+            header('Location: ../php/main.php?act=pagepayment');
+        }
+        header('Location: ../php/main.php?act=account');
+    }else{
+        echo "Đăng ký tài khoản không thành công";
+    }
 
+}
 if ((isset($_POST['login'])) && ($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     // unset($_SESSION['role']);
-    $account = new Account();
-
-    $result = $account->getUser($email, $password);
-    //check email bị trùng trước
+    $user = new User();
+    $result = $user->getUser($email, $password);
+    echo empty(!$result);
     if (!empty($result)) {
         switch ($result['role']) {
             case '1':
                 $_SESSION['role'] = $result['role'];
                 header('Location: index.php');
                 break;
-            case '0':
-                $_SESSION['role'] = $result['role'];
-                $_SESSION['email'] = $result['email'];
-                $_SESSION['account_id'] = $result['account_id'];
+                case '0':
+                    $_SESSION['role'] = $result['role'];
+                    $_SESSION['email'] = $result['email'];
+                    $_SESSION['account_id'] = $result['account_id'];
+                    
+                    if ($_SESSION['redirect_to'] == 'pagepayment') {
+                        header('Location: ../php/main.php?act=pagepayment');
+                        break;
+                    }
                 header('Location: ../php/main.php?act=account');
                 break;
             default:
@@ -32,15 +51,16 @@ if ((isset($_POST['login'])) && ($_POST['login'])) {
         echo 'Sai email hoặc mật khẩu!!!';
     }
 }
+
 ?>
-<main class="main">
+<main class="main" style="text-align: center;">
     <form action="../admin/login.php" method="post" class="register">
         <div class="form-title">
             <span>Đăng nhập</span>
         </div>
-        <input placeholder="Email" type="email" name="email" value="admin@test.com" required>
-        <input placeholder="Mật khẩu" type="password" name="password" value="admin" required>
+        <input placeholder="Email" type="email" name="email" value="user@test.com" required>
+        <input placeholder="Mật khẩu" type="password" name="password" value="user" required>
         <input type="submit" name="login" value="Đăng nhập">
     </form>
-    <span>Bạn chưa có tài khoản, vui lòng đăng ký <u><a href="../php/main.php?act=register">tại đây</a></u></span>
+    <span>Bạn chưa có tài khoản, vui lòng đăng ký <u><a href="../php/main.php?act=pageregister">tại đây</a></u></span>
 </main>

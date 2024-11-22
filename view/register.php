@@ -1,13 +1,13 @@
 <!-- Main -->
 <main class="main">
-    <form action="" class="register">
+    <form action="../php/main.php?act=register" class="register" method="post">
         <div class="form-title">
             <span>Đăng ký tài khoản</span>
         </div>
-        <input placeholder="Họ và tên" type="text">
-        <input placeholder="Email" type="email">
-        <input placeholder="Số điện thoại" type="tel" pattern="[0]{1}[0-9]{9}" required>
-        <input placeholder="Mật khẩu" type="password">
+        <!-- <input placeholder="Họ và tên" type="text" > -->
+        <input placeholder="Email" type="email" name="email" required>
+        <!-- <input placeholder="Số điện thoại" type="tel" pattern="[0]{1}[0-9]{9}" required> -->
+        <input placeholder="Mật khẩu" type="password" name="password" required>
 
         <!-- <div class="field">
                     <input type="text" id="name" name="name" placeholder="" required>
@@ -25,7 +25,7 @@
                     <input type="password" id="password" name="password" placeholder="" required>
                     <label class="label" for="password">Mật khẩu</label>
                 </div> -->
-        <input type="submit" name="" id="" value="Đăng ký">
+        <input type="submit" name="register" value="Đăng ký">
     </form>
 </main>
 <!-- footer -->

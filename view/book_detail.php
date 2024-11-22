@@ -7,7 +7,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
     $book = new BookController();
     $kq = $book->getBookById($id);
     $soluong = 1;
-    echo '<div class="book-detail w85">
+    echo '<div class="book-detail w68">
                 <div class="left">
                     <img src="../images/' . $kq['image'] . '" alt="">
                 </div>
@@ -34,7 +34,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
     if ($kq['stock'] == 0) {
         echo '<input type="" name="" value="Hết hàng" class="add-to-cart" disabled>';
     } else {
-        echo '<input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart">';
+        echo '<input type="submit" name="addcart" value="Thêm vào giỏ hàng" class="add-to-cart">';
     }
     echo '</form>
                     </div>

@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <form action="../test.html" class="container">
         <div class="grid-5 m0 flex max-width">
             <!-- ben trai -->
             <div style="width: 70%;">
@@ -20,12 +20,11 @@
                     </div>
                 </div>
                 <div class="flex">
-                    <form action="" class="form">
-
+                    <div class="form">
                         <div class="form-header flex">
                             <h3 class="margin0 w85"> Thông tin nhận hàng</h3>
                             <div class="signout">
-                                <a href="#">
+                                <a href="../php/main.php?act=pagelogout">
                                     <i class="fa-solid fa-right-from-bracket"></i>
                                     <span>Đăng xuất</span></a>
                             </div>
@@ -50,7 +49,7 @@
                             </div>
 
                         </div>
-                    </form>
+                    </div>
                     <div class="shipping">
                         <section class="section-shipping">
                             <div class="title">
@@ -123,12 +122,13 @@
                         <i class="fa-solid fa-arrow-left"></i>
                         <span>Quay về giỏ hàng</span>
                     </a>
-                    <button>ĐẶT HÀNG</button>
+
+                    <button><input type="submit" value="ĐẶT HÀNG"></button>
                 </div>
             </div>
         </div>
 
-    </div>
+    </form>
 </body>
 
 </html>

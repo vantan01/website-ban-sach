@@ -1,6 +1,6 @@
 <?php
 
-include_once  '../model/Book.php';
+include_once  '../model/book.php';
 
 class BookController
 {

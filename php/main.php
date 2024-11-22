@@ -12,8 +12,19 @@ switch ($act) {
     case 'detail':
         include ROOT_DIR . '/view/book_detail.php';
         break;
-    case 'register':
+    case 'pageregister':
         include ROOT_DIR . '/view/register.php';
+        break;
+    case 'register':
+        include ROOT_DIR . '/admin/login.php';
+        break;
+    case 'pagepayment':
+        if(isset($_SESSION['role'])){
+            header( "location: ../view/payment.php");
+        }else{
+            $_SESSION['redirect_to'] = 'pagepayment'; 
+            include '../admin/login.php';
+        }
         break;
     case 'allbooks':
         include ROOT_DIR . '/view/all-books.php';
@@ -31,6 +42,8 @@ switch ($act) {
             unset($_SESSION['email']);
         if (isset($_SESSION['account_id']))
             unset($_SESSION['account_id']);
+        if (isset($_SESSION['redirect_to']))
+            unset($_SESSION['redirect_to']);
         header('location: ../php/main.php');
         break;
     case 'account':
