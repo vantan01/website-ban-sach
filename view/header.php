@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+    function getTotalQuantity() { 
+        if (!isset($_SESSION['cart'])) { 
+            return 0; 
+        } 
+        $totalQuantity = 0; 
+        foreach ($_SESSION['cart'] as $item) { 
+        $totalQuantity += $item[4]; 
+        } 
+        return $totalQuantity;
+    }
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,26 +28,26 @@
                 <div class="logo">
                     <img src="../images/logo.jpg" alt="Logo">
                 </div>
-                <div class="search">
-                    <input type="text" placeholder="Search for books...">
-                    <i class="fas fa-search"></i>
+                <div class="search"> 
+                    <form action="../php/main.php?act=search" method="post"> 
+                        <input type="text" placeholder="Search for books..." name="query"> 
+                        <button type="submit"><i class="fas fa-search"></i></button> 
+                    </form>
                 </div>
                 <div class="user-options">
                     <?php
                     if (isset($_SESSION['email']) && $_SESSION['email'] != '') {
-                        echo '<a href="../php/main.php?act=account" class="account"><i class="fas fa-user"></i> ' . explode('@',$_SESSION['email'])[0] . '</a>';
-                        echo '<a href="../php/main.php?act=pagelogout" class="account"><i class="fas fa-user"></i> THOÁT</a>';
+                        echo '<a href="../php/main.php?act=account" class="account"> ' . explode('@',$_SESSION['email'])[0] . '</a>';
+                        echo '<a href="../php/main.php?act=pagelogout" class="account"> THOÁT</a>';
                     } else {
-                        echo '<a href="../php/main.php?act=pageregister" class="account"><i class="fas fa-user"></i> ĐĂNG KÝ</a>';
-                        echo '<a href="../php/main.php?act=pagelogin" class="account"><i class="fas fa-user"></i> ĐĂNG NHẬP</a>';
+                        echo '<a href="../php/main.php?act=pageregister" class="account"> ĐĂNG KÝ</a>';
+                        echo '<a href="../php/main.php?act=pagelogin" class="account"> ĐĂNG NHẬP</a>';
                     }
                     ?>
                     <a href="../php/main.php?act=cart" class="cart cart-icon">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">
-                            <?php
-                            // $cartCount 
-                            ?>22
+                            <?php   echo getTotalQuantity(); ?>
                         </span>
                     </a>
                 </div>

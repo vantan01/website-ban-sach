@@ -2,22 +2,32 @@
 include ROOT_DIR . '/controller/categoryController.php';
 include '../controller/bookController.php';
 
+$bookModel = new Book();
 $bookController = new BookController();
-$books = $bookController->getBooks();
+$categoryCotroller = new CategoryController();
+
+
 $authors = $bookController->getAllAuthors();
 
-
-
-$categoryCotroller = new CategoryController();
 $categories = $categoryCotroller->getCategories();
+$limit = 12;
+$page = isset($_POST['page']) ? $_POST['page'] : 1;
+$start = ($page - 1) * $limit;
+$category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
+if ($category_id) {
+    $books = $bookController->getBooksByCategory($category_id);
+} else {
+    $books = $bookModel->getBooksFrom($start, $limit);
+}
+
+$total_books = $bookModel->getTotalBooks();
+$total_pages = ceil($total_books / $limit);
 ?>
 
 <main class="main">
     <!-- aside -->
     <div class="row left">
         <div class="aside">
-            <!-- co nhieu item -->
-
             <div class="aside-item">
                 <div class="aside-title">
                     <span> ALL CATEGORIES</span>
@@ -28,7 +38,7 @@ $categories = $categoryCotroller->getCategories();
                         if (isset($categories) && is_array($categories)) {
                             foreach ($categories as $category) {
                                 echo '
-                                        <li><a href="#">' . $category["name"] . '</a></li>
+                                        <li><a href="../php/main.php?act=allbooks&category_id='.$category["category_id"].'">' . $category["name"] . '</a></li>
                                     ';
                             }
                         } else {
@@ -89,7 +99,7 @@ $categories = $categoryCotroller->getCategories();
                         } else {
                             echo '<span> Còn hàng</span>';
                         }
-                        echo '<form action="../controller/cartController.php" method="post">
+                        echo '<form action="../controller/cartController.php?stock=' . $book['stock'] . '" method="post">
                                     <input type="hidden" name="id" value="' . $book['book_id'] . '">
                                     <input type="hidden" name="anhsp" value="' . $book['image'] . '">
                                     <input type="hidden" name="tensp" value="' . $book['title'] . '">
@@ -104,17 +114,29 @@ $categories = $categoryCotroller->getCategories();
                             </div>';
                     }
                 } else {
-                    echo 'Không có sách nào trong danh sách.';
+                    echo '<p>Không có sách nào trong danh sách.</p>';
                 }
                 ?>
             </div>
         </div>
-        <div class="change-page grid-4">
-            <button class="btn-change-page">1</button>
-            <button class="btn-change-page">2</button>
-            <button class="btn-change-page">3</button>
-            <button class="btn-change-page"> ... </button>
-            <button class="btn-change-page">100</button>
+        <div class="change-page grid-4"> 
+            <form id="paginationForm" action="../php/main.php?act=allbooks" method="post">
+                <input type="hidden" name="page" id="pageInput"> 
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?> 
+                <button type="button" class="btn-change-page" onclick="changePage(<?= $i ?>)">
+                    <?= $i ?>
+                </button> 
+                <?php endfor; ?> 
+            </form>
         </div>
     </div>
 </main>
+
+
+
+<script> 
+function changePage(page) { 
+    document.getElementById('pageInput').value = page; 
+    document.getElementById('paginationForm').submit(); 
+}
+</script>

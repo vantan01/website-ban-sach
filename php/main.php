@@ -49,6 +49,9 @@ switch ($act) {
     case 'account':
         include '../view/account.php';
         break;
+    case 'search':
+        include '../view/search.php';
+        break;
     default:
         include ROOT_DIR . '/view/home.php';
         break;

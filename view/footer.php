@@ -1,18 +1,5 @@
 <footer class="footer">
-    <div class="footer-policy">
-        <div class="policy-item">
-            <div class="policy-icon">
-                <i class="fa-solid fa-truck-fast"></i>
-            </div>
-
-        </div>
-        <div class="policy-item">
-            <div class="policy-icon">
-                <i class="fa-solid fa-star"></i>
-            </div>
-
-        </div>
-    </div>
+    
 
     <div class="footer-container">
         <div class="footer-logo">

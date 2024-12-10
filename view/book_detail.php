@@ -1,5 +1,4 @@
 <?php
-
 include_once '../controller/bookController.php';
 // Lấy dữ liệu từ form
 if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -19,7 +18,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                         <p>Nhà xuất bản: ' . $kq['publisher'] . '</p>
                     </div>
                     <div class="book-detail-item"> 
-                    <form action="../controller/cartController.php" method="post">
+                    <form action="../controller/cartController.php?stock=' . $kq['stock'] . '" method="post">
 
                         <input type="hidden" name="id" value="' . $kq['book_id'] . '">
                         <input type="hidden" name="anhsp" value="' . $kq['image'] . '">
@@ -28,7 +27,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                         <label>Số lượng</label>
                         <div class="quantity">
                             <i class="fa-solid fa-caret-up increment" onclick="updateQuantity(1,this)"></i>
-                            <input type="number" min="1" max="1000" name="quantity" value="1" readonly>
+                            <input type="number" min="-100" max="1000" name="quantity" value="' . $soluong . '" >
                             <i class="fa-solid fa-caret-down decrement" onclick="updateQuantity(-1,this)"></i>
                         </div><br>';
     if ($kq['stock'] == 0) {

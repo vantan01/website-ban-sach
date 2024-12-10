@@ -13,6 +13,7 @@ if (isset($_POST['register']) && $_POST['register']) {
         if ($user->create($email, $password)) {
             $_SESSION['role'] = 0;
             $_SESSION['email'] = $email;
+            $_SESSION['account_id'] = $result['account_id'];
             if ($_SESSION['redirect_to'] == 'pagepayment') {
                 header('Location: ../php/main.php?act=pagepayment');
             }

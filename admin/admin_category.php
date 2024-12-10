@@ -19,6 +19,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $categories = $categoryController->getCategories();
 
 ?>
+<style>
+        .admin-container {
+            width: 90%;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+        .admin-header h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .admin-table-container {
+            margin-bottom: 20px;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .admin-table th, .admin-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .admin-table th {
+            background-color: #f4f4f4;
+        }
+        .admin-actions form {
+            display: inline;
+            margin: 0 5px;
+        }
+        .admin-actions input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .admin-actions input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        #order-items-container {
+            display: none;
+        }
+        #order-items-container h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
 <div class="admin-container">
     <div class="admin-header">
         <h1>Quản lý Danh mục</h1>

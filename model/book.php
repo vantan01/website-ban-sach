@@ -48,7 +48,7 @@ class Book
     {
         $query = "INSERT INTO " . $this->table_name . " (title, author, publisher, price, description, category_id, stock, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("sssdssis", $title, $author, $publisher, $price, $description, $category_id, $stock, $image);
+        $stmt->bind_param("sssdsiib", $title, $author, $publisher, $price, $description, $category_id, $stock, $image);
         $stmt->execute();
     }
 
@@ -85,4 +85,28 @@ class Book
         $stmt->close();
         return $book;
     }
+
+    public function getBooksFrom($start, $limit) { 
+        $query = "SELECT * FROM ".$this->table_name." LIMIT $start, $limit";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+    public function getTotalBooks() { 
+        $result = $this->conn->query("SELECT COUNT(book_id) as total FROM books"); 
+        $row = $result->fetch_assoc(); 
+        return $row['total'];
+    }
+
+    public function searchBooks($query)
+{
+    $query = "%" . $query . "%";
+    $sql = "SELECT * FROM " . $this->table_name . " WHERE title LIKE ? OR author LIKE ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("ss", $query, $query);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+
 }

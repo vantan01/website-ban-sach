@@ -107,36 +107,73 @@ a {
     margin: 0 auto;
 }
 
-.search input {
+.search form {
     width: 100%;
     padding: 10px 40px 10px 20px;
     border: 2px solid #888;
     border-radius: 50px;
-    font-size: 17px;
     outline: none;
     transition: box-shadow 0.3s, border-color 0.3s;
 }
 
-.search input::placeholder {
+.search form input {
+    width: 100%;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    background-color: transparent; /* Đặt nền thành trong suốt */
+}
+
+.search form input::placeholder {
     color: #aaa;
 }
 
-.search:hover input {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-color: var(--mau-xanh);
+.search form input:focus {
+    background-color: transparent; /* Đặt nền thành trong suốt khi phần tử được chọn */
+    outline: none;
 }
 
-.search i {
+.search form input:active {
+    background-color: transparent; /* Đặt nền thành trong suốt khi phần tử được chọn */
+    outline: none;
+}
+
+.search:hover input {
+    border-color: var(--mau-xanh);
+    outline: none;
+}
+
+.search button {
     position: absolute;
     right: 10px;
     color: var(--mau-xam);
     font-size: 16px;
     cursor: pointer;
+    background: transparent;
+    outline: none;
+    border: none;
 }
 
-.search i:active {
+.search button:active {
     color: var(--mau-den);
 }
+
+
+.search button {
+    position: absolute;
+    right: 10px;
+    color: var(--mau-xam);
+    font-size: 16px;
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.search button:active {
+    color: var(--mau-den);
+}
+
 
 .user-options a {
     color: var(--mau-den);
@@ -379,7 +416,9 @@ a {
     text-align: center;
     box-sizing: border-box;
 }
-
+.product-image{
+    max-height: 100px;
+}
 .grid-5 {
     width: 85%;
     max-width: 85%;
@@ -639,6 +678,7 @@ a {
 
 /* cart */
 .cart-container {
+    min-height: 20px;
     padding: 15px 30px 1px;
     border: 1px solid var(--mau-xanh);
     margin-bottom: 20px;
@@ -910,16 +950,23 @@ a {
 
 .content-box-row {
     font-size: 15px;
+    align-items: center;
     display: flex;
 }
 
 .content-box-row input {
-    margin: 0 10px;
+    margin:  15px;
 }
 
 .content-box-row~.content-box-row {
     border-top: 1px solid var(--mau-xam);
 }
+
+.product-item{
+    height: 100px;
+    padding: 5px 0;
+}
+
 
 /* sidebar */
 .sidebar {
@@ -932,9 +979,7 @@ a {
 }
 
 
-.order-summary {
-    min-height: 100px;
-}
+
 
 .discount-code {
     padding: 10px 5px;
@@ -1041,6 +1086,8 @@ a {
 .sidebar-nav a:hover span {
     color: var(--mau-xanh-dam);
 }
+
+
 
 /* book detail */
 .book-detail {

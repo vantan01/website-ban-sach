@@ -40,29 +40,29 @@ class User
         return $kq ? $kq : null;
     }
 
-    public function create($email, $password)
+    public function create($email, $password, $role=0)
     {
-        $query = "INSERT INTO " . $this->table_name . " (email, password) VALUES (?, ?)";
+        $query = "INSERT INTO " . $this->table_name . " (email, password, role) VALUES ( ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ss", $email, $password);
+        $stmt->bind_param("ssi", $email, $password,$role);
         return $stmt->execute() ? true : false;
     }
 
     public function delete($account_id)
     {
-        $query = "DELETE FROM " . $this->table_name . " WHERE book_id = ?";
+        $query = "DELETE FROM " . $this->table_name . " WHERE account_id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $account_id);
         $stmt->execute();
     }
 
-    public function update($account_id, $email, $password, $phone, $address)
-    {
-        $query = "UPDATE " . $this->table_name . " SET email = ?, password = ?, phone = ?, address = ? WHERE account_id = ?";
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ssssi", $email, $password, $phone, $address, $account_id);
-        $stmt->execute();
-    }
+    // public function update($account_id, $email, $password, $phone, $address)
+    // {
+    //     $query = "UPDATE " . $this->table_name . " SET email = ?, password = ?, phone = ?, address = ? WHERE account_id = ?";
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->bind_param("ssssi", $email, $password, $phone, $address, $account_id);
+    //     $stmt->execute();
+    // }
     // public function getAllAuthors()
     // {
     //     $query = "SELECT DISTINCT author FROM " . $this->table_name;

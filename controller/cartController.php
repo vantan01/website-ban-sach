@@ -12,13 +12,14 @@ if (isset($_POST['del-cart-item']) && $_POST['del-cart-item']) {
     header("Location: ../php/main.php?act=cart");
 }
 // Lấy dữ liệu từ form
-if (isset($_POST['addcart']) && $_POST['addcart']) {
+
+if (isset($_POST['addcart']) && $_POST['addcart'] && $_GET['stock'] != 0) {
     $id = $_POST['id'];
     $image = $_POST['anhsp'];
     $name = $_POST['tensp'];
     $price = $_POST['gia'];
 
-    $quantity = ((isset($_POST['quantity'])) && $_POST['quantity'] > 0) ? $_POST['quantity'] : 1;
+    $quantity =  $_POST['quantity'];
 
     // Kiểm tra sản phẩm đã tồn tại trong giỏ hàng chưa
     $found = false;

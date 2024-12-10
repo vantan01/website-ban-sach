@@ -48,4 +48,12 @@ class BookController
     {
         return $this->book->getBookById($id);
     }
+
+    public function getBooksFrom($start,$limit)
+    {
+        $this->book->getBooksFrom($start, $limit);
+    }
+    public function getTotalBooks(){
+        $this->book->getTotalBooks();
+    }
 }
