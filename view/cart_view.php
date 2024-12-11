@@ -1,7 +1,7 @@
 <?php
 include '../controller/cartController.php';
 ?>
-<main class="main" style="text-align: center;>
+<main class="main" style="text-align: center" ;>
     <section class=" cart">
         <h1> Giỏ hàng của bạn</h1>
         <div class="cart-container grid-5 m0">
@@ -20,7 +20,7 @@ include '../controller/cartController.php';
                     <div class="cart-main">';
 
                 $pos = 0;
-                foreach ($_SESSION['cart'] as $item) {  
+                foreach ($_SESSION['cart'] as $item) {
                     $thanhtien = intval($item[3]) * $item[4];
                     $total_price += $thanhtien;
                     echo '<div class="cart-item">
@@ -29,19 +29,17 @@ include '../controller/cartController.php';
                                 <input type="submit" name="del-cart-item" value="X">
                             </form>
                             </div>
-                                <a href="../php/main.php?act=detail&id=' . $item[0] . '" class="cart-image">
+                                <a href="../php/main.php?act=detail&id=' . $item[0] . ' &quantity=' . $item[4] . '" class="cart-image">
                                     <img src="../images/' . $item[1] . '" alt="">
                                 </a>
-                                <a href="../php/main.php?act=detail&id=' . $item[0] . '" class="cart-product-name">
+                                <a href="../php/main.php?act=detail&id=' . $item[0] . ' &quantity=' . $item[4] . '" class="cart-product-name">
                                     <p>' . $item[2] . '</p>
                                 </a>
                                 <div class="cart-price">
                                     <span>' . $item[3] . '</span>
                                 </div>
                                 <div class="quantity">
-                                <form action="" method="post">
-                                    <input type="number" min="1" max="1000" name="quantity" value="' . $item[4] . '" >
-                                </form>
+                                    <input type="number" min="0" max="1000" name="quantity" value="' . $item[4] . '" >
                                 </div>
                                 <div class="cart-price">
                                     <span>' . number_format($thanhtien, 0, '', '.') . ' VNĐ </span>

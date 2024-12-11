@@ -38,7 +38,7 @@ $total_pages = ceil($total_books / $limit);
                         if (isset($categories) && is_array($categories)) {
                             foreach ($categories as $category) {
                                 echo '
-                                        <li><a href="../php/main.php?act=allbooks&category_id='.$category["category_id"].'">' . $category["name"] . '</a></li>
+                                        <li><a href="../php/main.php?act=allbooks&category_id=' . $category["category_id"] . '">' . $category["name"] . '</a></li>
                                     ';
                             }
                         } else {
@@ -97,13 +97,14 @@ $total_pages = ceil($total_books / $limit);
                         if (!$in_stock) {
                             echo '<span> Hết hàng</span>';
                         } else {
-                            echo '<span> Còn hàng</span>';
+                            echo '<span> Số lượng: '.$book['stock'].'</span>';
                         }
-                        echo '<form action="../controller/cartController.php?stock=' . $book['stock'] . '" method="post">
+                        echo '<form action="../controller/cartController.php" method="post">
                                     <input type="hidden" name="id" value="' . $book['book_id'] . '">
                                     <input type="hidden" name="anhsp" value="' . $book['image'] . '">
                                     <input type="hidden" name="tensp" value="' . $book['title'] . '">
-                                    <input type="hidden" name="gia" value="' . $book['price'] . '">';
+                                    <input type="hidden" name="gia" value="' . $book['price'] . '">
+                                    <input type="hidden" name="instock" value="' .  $book['stock'] . '">';
                         if ($in_stock) {
                             echo '<input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart">';
                         } else {
@@ -119,14 +120,14 @@ $total_pages = ceil($total_books / $limit);
                 ?>
             </div>
         </div>
-        <div class="change-page grid-4"> 
+        <div class="change-page grid-4">
             <form id="paginationForm" action="../php/main.php?act=allbooks" method="post">
-                <input type="hidden" name="page" id="pageInput"> 
-                <?php for ($i = 1; $i <= $total_pages; $i++): ?> 
-                <button type="button" class="btn-change-page" onclick="changePage(<?= $i ?>)">
-                    <?= $i ?>
-                </button> 
-                <?php endfor; ?> 
+                <input type="hidden" name="page" id="pageInput">
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <button type="button" class="btn-change-page" onclick="changePage(<?= $i ?>)">
+                        <?= $i ?>
+                    </button>
+                <?php endfor; ?>
             </form>
         </div>
     </div>
@@ -134,9 +135,9 @@ $total_pages = ceil($total_books / $limit);
 
 
 
-<script> 
-function changePage(page) { 
-    document.getElementById('pageInput').value = page; 
-    document.getElementById('paginationForm').submit(); 
-}
+<script>
+    function changePage(page) {
+        document.getElementById('pageInput').value = page;
+        document.getElementById('paginationForm').submit();
+    }
 </script>

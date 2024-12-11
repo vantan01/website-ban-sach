@@ -50,13 +50,14 @@ include_once '../controller/CartController.php';
                     if (!$in_stock) {
                         echo '<span> Hết hàng</span>';
                     } else {
-                        echo '<span> Còn hàng</span>';
+                        echo '<span> Số lượng: '.$book['stock'].'</span>';
                     }
                     echo '<form action="../controller/cartController.php" method="post">
                                 <input type="hidden" name="id" value="' . $book['book_id'] . '">
                                 <input type="hidden" name="anhsp" value="' . $book['image'] . '">
                                 <input type="hidden" name="tensp" value="' . $book['title'] . '">
-                                <input type="hidden" name="gia" value="' . $book['price'] . '">';
+                                <input type="hidden" name="gia" value="' . $book['price'] . '">
+                                <input type="hidden" name="instock" value="' .  $book['stock'] . '">';
                                 if ($in_stock) {
                                     echo '<input type="submit" name="addcart" value="Đặt hàng" class="add-to-cart">';
                                 } else {

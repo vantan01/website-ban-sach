@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Chi tiết đơn hàng</title>
@@ -60,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </style>
 </head>
+
 <body>
     <div class="detail-container">
         <div class="detail-header">
@@ -68,8 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <table class="detail-table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>ID Đơn hàng</th>
                     <th>Tên sách</th>
                     <th>Số lượng</th>
                     <th>Giá</th>
@@ -81,8 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (isset($orderitems) && is_array($orderitems)) {
                     foreach ($orderitems as $item) {
                         echo "<tr>
-                        <td>{$item['order_item_id']}</td>
-                        <td>{$item['order_id']}</td>
                         <td>{$item['title']}</td>
                         <td>{$item['quantity']}</td>
                         <td>{$item['book_price']}</td>
@@ -95,7 +93,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ?>
             </tbody>
         </table>
-        <a href="index.php?action=orders" class="back-button">Quay lại</a>
+        <a href="#" class="back-button" onclick="goback()">Quay lại</a>
     </div>
+    <script>
+        function goback() {
+            window.history.back();
+        }
+    </script>
 </body>
+
 </html>

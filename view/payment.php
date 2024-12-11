@@ -5,7 +5,7 @@ $orderController = new OrderController();
 session_start();
 if (isset($_POST['addorders']) && $_POST['addorders'] && isset($_SESSION['cart'])) {
     $payment_method = $_POST['payment_method'];
-    $status = 'pending';
+    $status = 'Đang chờ duyệt';
     $address = $_POST['address'];
     $phone = $_POST['tel'];
     $order = new Order();
@@ -90,9 +90,9 @@ if (isset($_POST['addorders']) && $_POST['addorders'] && isset($_SESSION['cart']
                             <div class="title">
                                 <h3 class="margin0 w85">Vận chuyển</h3>
                             </div>
-                            <div class="shipping-info">
+                            <!-- <div class="shipping-info">
                                 <p class="m0">Vui lòng nhập thông tin giao hàng</p>
-                            </div>
+                            </div> -->
                         </section>
                         <section class="section-shipping">
                             <div class="title">

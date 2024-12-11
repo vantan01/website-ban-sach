@@ -5,7 +5,9 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
     $id = $_GET['id'];
     $book = new BookController();
     $kq = $book->getBookById($id);
-    $soluong = 1;
+    $soluong = $_GET['quantity'];
+    $in_stock = $kq['stock'] != 0;
+    if ($soluong > $kq['stock']) { $soluong = $kq['stock'];}
     echo '<div class="book-detail w68">
                 <div class="left">
                     <img src="../images/' . $kq['image'] . '" alt="">
@@ -18,16 +20,17 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
                         <p>Nhà xuất bản: ' . $kq['publisher'] . '</p>
                     </div>
                     <div class="book-detail-item"> 
-                    <form action="../controller/cartController.php?stock=' . $kq['stock'] . '" method="post">
+                    <form action="../controller/cartController.php?" method="post">
 
                         <input type="hidden" name="id" value="' . $kq['book_id'] . '">
                         <input type="hidden" name="anhsp" value="' . $kq['image'] . '">
                         <input type="hidden" name="tensp" value="' . $kq['title'] . '">
                         <input type="hidden" name="gia" value="' . $kq['price'] . '">
+                        <input type="hidden" name="instock" value="' .$kq['stock'] . '">
                         <label>Số lượng</label>
                         <div class="quantity">
                             <i class="fa-solid fa-caret-up increment" onclick="updateQuantity(1,this)"></i>
-                            <input type="number" min="-100" max="1000" name="quantity" value="' . $soluong . '" >
+                            <input type="number" min="-100" max="'.$kq['stock'].'" name="quantityincart" value="' . $soluong . '" >
                             <i class="fa-solid fa-caret-down decrement" onclick="updateQuantity(-1,this)"></i>
                         </div><br>';
     if ($kq['stock'] == 0) {

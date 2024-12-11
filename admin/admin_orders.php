@@ -6,6 +6,7 @@ include_once '../controller/orderController.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Quản lý đơn hàng</title>
@@ -98,6 +99,7 @@ include_once '../controller/orderController.php';
         }
     </style>
 </head>
+
 <body>
     <div class="admin-container">
         <div class="admin-header">
@@ -121,7 +123,7 @@ include_once '../controller/orderController.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <?php   
+                    <?php
                     $order_id;
                     $orderModel = new Order();
                     $orders = $orderModel->readAll();
@@ -134,12 +136,22 @@ include_once '../controller/orderController.php';
                                 <td>' . $order['phone'] . '</td>
                                 <td>' . $order['order_date'] . '</td>
                                 <td>' . $order['total_amount'] . '</td>
-                                <td>' . $order['status'] . '</td>
+                                <td> 
+                                <form method="post" action="update_order.php"> 
+                                <input type="hidden" name="order_id" value="' . $order['order_id'] . '"> 
+                                    <select name="status" onchange="this.form.submit()"> 
+                                        <option value="' . $order['status'] . '">' . $order['status'] . '</option> 
+                                        <option value="Đã duyệt">Đã duyệt</option> 
+                                        <option value="Đã giao hàng">Đã giao hàng</option> 
+                                        <option value="Đã hủy">Đã hủy</option> 
+                                    </select> 
+                                </form> 
+                                </td>
                                 <td>' . $order['payment_method'] . '</td>
                                 <td>' . $order['address'] . '</td>
                                 <td>' . $order['payment_date'] . '</td>
                                 <td class="admin-actions">
-                                    <form method="post" action="orderDetails.php">
+                                    <form method="post" action="../view/orderDetails.php">
                                         <input type="hidden" name="order_id" value="' . $order_id . '">
                                         <input type="submit" value="Xem chi tiết">
                                     </form>
@@ -154,5 +166,7 @@ include_once '../controller/orderController.php';
             </table>
         </div>
     </div>
+
 </body>
+
 </html>
