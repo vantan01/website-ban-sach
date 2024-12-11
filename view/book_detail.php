@@ -5,7 +5,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
     $id = $_GET['id'];
     $book = new BookController();
     $kq = $book->getBookById($id);
-    $soluong = $_GET['quantity'];
+    $soluong = $_GET['quantity'] ?? 1;
     $in_stock = $kq['stock'] != 0;
     if ($soluong > $kq['stock']) { $soluong = $kq['stock'];}
     echo '<div class="book-detail w68">

@@ -1,9 +1,11 @@
 <?php
 
 include_once  '../controller/bookController.php';
+include_once '../controller/categoryController.php';
 
-$book = new BookController();
-
+$book = new Book();
+$categorie = new CategoryController();
+$categories = $categorie->getCategories();
 
 if (isset($_POST['addbook']) && $_POST['addbook']) {
     $title = $_POST['title'];
@@ -13,13 +15,35 @@ if (isset($_POST['addbook']) && $_POST['addbook']) {
     $description = $_POST['description'];
     $category_id = $_POST['category_id'];
     $stock = $_POST['stock'];
-    $image = $_POST['image'];
-    // move_uploaded_file();
-    $book->addBook($title, $author, $publisher, $price, $description, $category_id, $stock, $image);
-    echo "Sách đã được thêm thành công!";
+
+    // Xử lý tải lên hình ảnh
+    $target_dir = "../images/";
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $uploadOk = 1;
+
+    if ($_FILES["image"]["size"] > 500000) {
+        echo "Kích thước file quá lớn.";
+        $uploadOk = 0;
+    }
+
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+        echo "Chỉ cho phép các định dạng JPG, JPEG, PNG.";
+        $uploadOk = 0;
+    }
+
+    if ($uploadOk == 1) {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+            $image = basename($_FILES["image"]["name"]);
+            $book->create($title, $author, $publisher, $price, $description, $category_id, $stock, $image);
+            echo "Sách đã được thêm thành công!";
+        } else {
+            echo "Có lỗi xảy ra khi tải lên hình ảnh.";
+        }
+    }
 } elseif (isset($_POST['delete_book'])) {
     $book_id = $_POST['book_id'];
-    $book->deleteBook($book_id);
+    $book->delete($book_id);
     echo "Sách đã được xóa thành công!";
 } elseif (isset($_POST['update_book'])) {
     $book_id = $_POST['book_id'];
@@ -30,13 +54,41 @@ if (isset($_POST['addbook']) && $_POST['addbook']) {
     $description = $_POST['description'];
     $category_id = $_POST['category_id'];
     $stock = $_POST['stock'];
-    $image = $_POST['image'];
-    // move_uploaded_file();
-    $book->editBook($book_id, $title, $author, $publisher, $price, $description, $category_id, $stock, $image);
-    echo "Sách đã được cập nhật thành công!";
+
+    // Xử lý cập nhật hình ảnh
+    if ($_FILES["image"]["name"]) {
+        $target_dir = "../images/";
+        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $uploadOk = 1;
+
+        if ($_FILES["image"]["size"] > 500000) {
+            echo "Kích thước file quá lớn.";
+            $uploadOk = 0;
+        }
+
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+            echo "Chỉ cho phép các định dạng JPG, JPEG, PNG.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 1) {
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                $image = basename($_FILES["image"]["name"]);
+                $book->update($book_id, $title, $author, $publisher, $price, $description, $category_id, $stock, $image);
+                echo "Sách đã được cập nhật thành công!";
+            } else {
+                echo "Có lỗi xảy ra khi tải lên hình ảnh.";
+            }
+        }
+    } else {
+        $image = $_POST['current_image'];
+        $book->update($book_id, $title, $author, $publisher, $price, $description, $category_id, $stock, $image);
+        echo "Sách đã được cập nhật thành công!";
+    }
 }
 
-$books = $book->getBooks();
+$books = $book->readAll();
 ?>
 <style>
     .admin-container {
@@ -102,42 +154,43 @@ $books = $book->getBooks();
         <h1>Quản lý Sách</h1>
     </div>
     <div class="admin-form w85 m0">
-        <form method="post" enctype="multipart/form-data">
-            <div class="field">
-                <input type="text" id="title" name="title" placeholder="Tên sách"><br>
+    <form method="post" enctype="multipart/form-data">
+        <div class="field">
+            <input type="text" id="title" name="title" placeholder="Tên sách"><br>
+            <input type="hidden" name="add_book" value="1" placeholder=" ">
+        </div>
+        <div class="field">
+            <input type="text" id="author" name="author" placeholder=" Tác giả"><br>
+        </div>
+        <div class="field">
+            <input type="text" id="publisher" name="publisher" placeholder=" Nhà xuất bản"><br>
+        </div>
+        <div class="field">
+            <input type="number" step="1000" id="price" name="price" placeholder=" giá"><br>
+        </div>
+        <div class="field"> 
+            <select id="category_id" name="category_id"> 
+            <option value="">Chọn danh mục</option> 
+            <?php 
+                if (isset($categories) && is_array($categories)) { 
+                    foreach ($categories as $category) { 
+                        echo '<option value="' . $category['category_id'] . '">' . $category['name'] . '</option>'; 
+                    } 
+                } 
+            ?> 
+            </select><br> 
+        <div class="field">
+            <input type="number" id="stock" name="stock" placeholder=" Số lượng"><br>
+        </div>
+        <div class="field">
+            <input type="file" id="image" name="image" placeholder=" Hình ảnh"><br>
+        </div>
+        <div class="field">
+            <textarea rows="5" cols="70" id="description" name="description" style="resize: none;" placeholder="Mô tả"></textarea><br>
+        </div>
+        <input type="submit" name="addbook" value="Thêm sách">
+    </form>
 
-                <input type="hidden" name="add_book" value="1" placeholder=" ">
-            </div>
-            <div class="field">
-                <input type="text" id="author" name="author" placeholder=" Tác giả"><br>
-
-            </div>
-            <div class="field">
-                <input type="text" id="publisher" name="publisher" placeholder=" Nhà xuất bản"><br>
-
-            </div>
-            <div class="field">
-                <input type="number" step="1000" id="price" name="price" placeholder=" giá"><br>
-
-            </div>
-            <div class="field">
-                <input type="number" id="category_id" name="category_id" placeholder="Danh mục "><br>
-
-            </div>
-            <div class="field">
-                <input type="number" id="stock" name="stock" placeholder=" Số lượng"><br>
-
-            </div>
-            <div class="field">
-                <input type="text" id="image" name="image" placeholder=" Hình ảnh"><br>
-
-            </div>
-            <div class="field">
-
-                <textarea rows="5" cols="70" id="description" name="description" style="resize: none;" placeholder="Mô tả"></textarea><br>
-            </div>
-            <input type="submit" name="addbook" value="Thêm sách">
-        </form>
     </div>
     <div class="admin-table-container">
         <table class="admin-table" border="1">

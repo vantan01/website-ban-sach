@@ -27,7 +27,7 @@ class Book
         $query = "SELECT * FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        return $stmt->get_result();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
     public function readBooksByCategory($category_id)
     {
@@ -48,7 +48,7 @@ class Book
     {
         $query = "INSERT INTO " . $this->table_name . " (title, author, publisher, price, description, category_id, stock, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("sssdsiib", $title, $author, $publisher, $price, $description, $category_id, $stock, $image);
+        $stmt->bind_param("sssdsiis", $title, $author, $publisher, $price, $description, $category_id, $stock, $image);
         $stmt->execute();
     }
 
@@ -72,7 +72,7 @@ class Book
         $query = "SELECT DISTINCT author FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        return $stmt->get_result();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
     public function getBookById($id)
     {

@@ -14,7 +14,6 @@ class BookController
     public function getBooks()
     {
         $stmt = $this->book->readAll();
-        return $stmt->fetch_all(MYSQLI_ASSOC);
     }
     public function getBooksByCategory($category_id)
     {
@@ -41,8 +40,8 @@ class BookController
     }
     public function getAllAuthors()
     {
-        $stmt = $this->book->getAllAuthors();
-        return $stmt->fetch_all(MYSQLI_ASSOC);
+        return $this->book->getAllAuthors();
+        
     }
     public function getBookById($id)
     {
